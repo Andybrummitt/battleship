@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Battleship</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+        <div id="grid-container">
+            <table id="ai-grid">
+                <tr class="colscope-row" id="1">
+                    <td></td>
+                </tr>
+            </table>
+            <table id="player-grid">
+                <tr class="colscope-row" id="2">
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div id="ship-setup-container">
+            <div id="ship-select-btns"></div>
+            <p id="ship-select-text"></p>
+            <button id="toggle-ship-direction">Toggle Ship Direction</button>
+            <ul id="ships-selected-ul">
+            </ul>
+        </div>
+        <ul>
+            <li class="test">a2</li>
+            <li class="test">a5</li>
+            <li class="test">a1</li>
+            <li class="test">a4</li>
+            <li class="test">a6</li>
+            <li class="test">a3</li>
+        </ul>
+        <form id="guess-form" class="hide">
+            <label for="guess-input">Tile Guess: </label>
+            <input type="text" id="guess-input" maxlength="3" required>
+            <button type="submit" id="submit-btn">Submit Guess</button>
+        </form>
+        </div>
+        <div id="notification-box" class="hide">
+            <h1 id="notification-title">notificationbox</h1>
+            <p id="notification-text"></p>
+        </div>
+
+       <script type="module" src="index.js"></script>
+   </body>
+</html>

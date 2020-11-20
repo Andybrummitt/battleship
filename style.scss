@@ -1,0 +1,34 @@
+:root {
+
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hide {
+    display: none;
+}
+
+.fade {
+    opacity: 0.3;
+}
+
+#grid-container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    table {
+        border: 1px solid black;
+        margin: 5%;
+        td {
+            border: 1px solid black;
+        }
+    }
+}
+
+.ship-hover {
+    background: red;
+}
