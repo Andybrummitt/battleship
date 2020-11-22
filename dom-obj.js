@@ -20,6 +20,6 @@ const domObj = {
     shipSetupContainer: document.querySelector('#ship-setup-container'),
     shipBtnsDiv: document.querySelector('#ship-select-btns'),
     toggleShipDirectionBtn: document.querySelector('#toggle-ship-direction'),
-}
+};
 
 export default domObj;

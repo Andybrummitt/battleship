@@ -1,5 +1,5 @@
 :root {
-
+    font-family: sans-serif;
 }
 
 body {
@@ -23,11 +23,93 @@ body {
     table {
         border: 1px solid black;
         margin: 5%;
+        border-collapse: collapse;
         td {
             border: 1px solid black;
+            text-align: center;       
+            padding-top: 0; 
+            background: linear-gradient(#3a78c9, #267aad); 
         }
     }
 }
+
+.text-div {
+    z-index: 2;
+    position: relative;
+}
+
+//  ------------------------  WAVES STYLING  ------------------------------------ //
+
+@mixin wave {
+    background: lightgray;
+    height: 5%;
+    width: 10%;
+    position: absolute;
+    z-index: 0;
+}
+
+.wave-1-phase1 {
+    @include wave;
+    transform: rotate(15deg);
+    top: 75%;
+    right: 60%;
+    border-bottom-left-radius: 50%; 
+}
+
+.wave-2-phase1 {
+    @include wave;
+    transform: rotate(-15deg);
+    top: 75%;
+    right: 70%;
+    border-bottom-right-radius: 50%;
+}
+
+.wave-3-phase1 {
+    @include wave;
+    transform: rotate(-15deg);
+    bottom: 0%;
+    left: 5%;
+    border-bottom-right-radius: 50%;
+}
+.wave-4-phase1 {
+    @include wave;
+    transform: rotate(15deg);
+    bottom: 0%;
+    left: 15%;
+    border-bottom-left-radius: 50%;
+}
+
+.wave-1-phase2 {
+    @include wave;
+    transform: rotate(15deg);
+    top: 0%;
+    right: 5%;
+    border-bottom-left-radius: 50%; 
+}
+
+.wave-2-phase2 {
+    @include wave;
+    transform: rotate(-15deg);
+    top: 0%;
+    right: 15%;
+    border-bottom-right-radius: 50%;
+}
+
+.wave-3-phase2 {
+    @include wave;
+    transform: rotate(-15deg);
+    bottom: 75%;
+    left: 60%;
+    border-bottom-right-radius: 50%;
+}
+.wave-4-phase2 {
+    @include wave;
+    transform: rotate(15deg);
+    bottom: 75%;
+    left: 70%;
+    border-bottom-left-radius: 50%;
+}
+
 
 .ship-hover {
     background: red;

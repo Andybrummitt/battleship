@@ -1,12 +1,12 @@
 import { inHits, inMisses, isTd, randomIndex } from './ai-turn-algorithm.js';
 
 const continueHitStreakGuess = tile => tilesLeft => arr => {
-    console.log(arr)
     let guess;
     let horizontal = false;
-    let childPosition = parseInt(tile.textContent.slice(1));
-    const row = arr[0].textContent[0];
-    if(arr.every(elem => elem.textContent[0] === row)){
+    let childPosition = parseInt(tile.firstElementChild.firstElementChild.textContent.slice(1));
+    const row = arr[0].firstElementChild.firstElementChild.textContent[0];
+    //  IF HITSTREAK ARRAY HAS ALL ELEMENTS FROM THE SAME ROW...
+    if(arr.every(elem => elem.firstElementChild.firstElementChild.textContent[0] === row)){
         horizontal = true;
     }
     let nextTileX = arr[arr.length-1].nextElementSibling;
@@ -14,9 +14,10 @@ const continueHitStreakGuess = tile => tilesLeft => arr => {
     if(inMisses(nextTileX) && inMisses(prevTileX)){
         horizontal = false;
     };      
-    //change to 0
-    let nextTileY = arr[arr.length-1].parentElement.nextElementSibling.children[childPosition] || null;
-    let prevTileY = arr[0].parentElement.previousElementSibling.children[childPosition] || null;
+    let nextTileY;
+    arr[arr.length-1].parentElement.nextElementSibling ? nextTileY = arr[arr.length-1].parentElement.nextElementSibling.children[childPosition] : prevTileX = null;
+    let prevTileY;
+    arr[0].parentElement.previousElementSibling ? prevTileY = arr[0].parentElement.previousElementSibling.children[childPosition] : prevTileY = null;
     if(inMisses(nextTileY) && inMisses(prevTileY)){
         horizontal = true;
     };     
@@ -54,20 +55,20 @@ const continueHitStreakGuess = tile => tilesLeft => arr => {
         };
     };
 };
-//tiles left, last hit
+
 const guessAfterHit = tilesLeft => tile => {
     let guess;
-        let childPosition = parseInt(tile.textContent.slice(1));
-            //this needs to be actual tds not textcontent
+        let childPosition = parseInt(tile.firstElementChild.firstElementChild.textContent.slice(1));
             let nextTileX = tile.nextElementSibling || null;
-            console.log(nextTileX);
             let prevTileX = tile.previousElementSibling || null;  
-            console.log(prevTileX)    
             let nextTileY;  
             tile.parentElement.nextElementSibling ? nextTileY = tile.parentElement.nextElementSibling.children[childPosition] : nextTileY = null;
-            console.log(nextTileY)
             let prevTileY;
-            tile.parentElement.nextElementSibling ? prevTileY = tile.parentElement.previousElementSibling.children[childPosition] : prevTileY = null;
+            // tile.parentElement.nextElementSibling ? prevTileY = tile.parentElement.previousElementSibling.children[childPosition] : prevTileY = null;
+            tile.parentElement.previousElementSibling ? prevTileY = tile.parentElement.previousElementSibling.children[childPosition] : prevTileY = null;
+            console.log(nextTileX);
+            console.log(prevTileX)    
+            console.log(nextTileY)
             console.log(prevTileY)
             //IF NO HIT STREAK BUT 1ST HIT
             // if(inHits(nextTileX) || inHits(prevTileX)){

@@ -17,7 +17,7 @@ const shipSunk = ship => ship.holes === ship.numTiles;
 const wonGame = ships => ships.filter(ship => ship.sunk === false).length < 1;
 
 const isHit = guess => aiTilesPositionsArr => {
-  return Boolean(aiTilesPositionsArr.filter(tile => tile.textContent === guess).length);
+  return Boolean(aiTilesPositionsArr.filter(tile => tile.firstElementChild.firstElementChild.textContent === guess).length);
 };
 
 const isMiss = AIturnsTracker => tile => {
@@ -44,26 +44,23 @@ const removeHitTile = aiTilesPositionsArr => hitTile => {
     aiTilesPositionsArr.splice(hitIndex, 1);
 };
 
-const clearArray = arr => arr = [];
-
 const removeEmptyArrays = arr => {
-    console.log(arr)
   let filteredArr = arr.filter(nestedArr => nestedArr.length > 0);
-  console.log(filteredArr)
   return filteredArr;
 };
 
-let arr = [[1,2,3], [4,5,6], [7,8,9]];
+const colorTileHit = tile => {
+    tile.firstElementChild.style.background = 'green';
+};
 
-console.log(arr)
-let filtererArr = [1]
+const colorTileMiss = tile => {
+    tile.firstElementChild.style.background = 'red';
+};
 
-let arr1 = arr.map(nested => nested.filter(elem => !filtererArr.includes(elem)))
-
-console.log(arr1)
-
-
-
+const clearArray = arr => {
+    arr.splice(0, arr.length);
+    return arr;
+};
 
 export { 
     addHoleToShip, 
@@ -76,5 +73,7 @@ export {
     clearInputAndDisableGuessBtn, 
     removeHitTile, 
     clearArray,
-    removeEmptyArrays
+    removeEmptyArrays,
+    colorTileHit,
+    colorTileMiss
 };

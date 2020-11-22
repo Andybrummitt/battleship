@@ -1,6 +1,16 @@
 export const addTextToElement = element => text => element.textContent = text;
 export const appendElToParent = element => parent => parent.appendChild(element);
 
+const createWave = (type) => {
+    const wave = document.createElement('div');
+    type === 1 && wave.classList.add('wave-1-phase1');
+    type === 2 && wave.classList.add('wave-2-phase1');
+    type === 3 && wave.classList.add('wave-3-phase1');
+    type === 4 && wave.classList.add('wave-4-phase1');
+    wave.classList.add('hide');
+    return wave;
+};
+
 const createGrid = (id) => {
 
     const colContentList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -27,7 +37,29 @@ const createGrid = (id) => {
         appendElToParent(th)(tr);
         for(let num of colContentList){
             const td = document.createElement('td');
-            td.textContent = arrElem + num;
+            //  DIV CONTAINER IS FOR WAVES
+            const div = document.createElement('div');
+            div.style.height = '100%';
+            div.style.width = '100%';
+            //  CREATING WAVES HERE
+            const wave1 = createWave(1);
+            const wave2 = createWave(2);
+            const wave3 = createWave(3);
+            const wave4 = createWave(4);
+            //  CREATE DIV WITH TILE NUMBER ON
+            const textDiv = document.createElement('div');
+            textDiv.textContent = arrElem + num;
+            textDiv.classList.add('text-div');
+            //THIS STOPS MOUSEOVER EVENT CALLING ON THE INNER DIV
+            div.style.pointerEvents = 'none';
+            div.style.position = 'relative';
+            div.style.background = 'linear-gradient(#3a78c9, #267aad)'
+            div.append(textDiv);
+            div.append(wave1);
+            div.append(wave2);
+            div.append(wave3);
+            div.append(wave4);
+            td.appendChild(div);
             tr.append(td);
         };
     });

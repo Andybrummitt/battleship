@@ -1,11 +1,13 @@
 import getNextTileSpace from './get-next-tile-space.js';
 
-const tileAvailable = tile => tile.style.background !== "grey";
+const tileAvailable = tile => tile.firstElementChild.style.background !== "grey";
 
 const getArrayOfShipTiles = td => ship => {
-    //IF TD THAT MOUSE IS OVER IS ALREADY SELECTED RETURN
+    //  IF TD THAT MOUSE IS OVER IS ALREADY SELECTED RETURN
     if(!tileAvailable(td)) return;
+    console.log('arr ship tiles func called')
     let arrOfShipTiles = [];
+    //  CHECK THIS!!!!
     let childPosition = parseInt(td.textContent.slice(1));
 
     const nextTileSpace = getNextTileSpace(td)(tileAvailable)(ship)(childPosition);

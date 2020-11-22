@@ -3,11 +3,16 @@ import shipState from './ship-state.js';
 import domObj from './dom-obj.js';
 import { ai, user } from './players-objs.js';
 import { startGame, setUpGame } from './play-game.js';
+import { isTd } from './ai-turn-algorithm.js';
+import { addWaveAnimation, randomTilesArr } from './wave-animation.js';
 
 //---------------------- SET COLOR FUNCTIONS -----------------------------
 
-const setTd = color => td => td.style.background = color;
-const setTdWhite = setTd('white');
+
+
+//maybe add .firstElementChild. to setTd
+const setTd = color => td => td.firstElementChild.style.background = color;
+const resetTdColor = setTd('linear-gradient(#3a78c9, #267aad)');
 const setTdRed = setTd('red');
 const setTdGrey = setTd('grey');
 
@@ -60,7 +65,7 @@ const shipBtnClickListener = ship => {
     //MOUSEOVER CALLBACK THAT GETS TILES AND PAINTS 
     const mouseoverCb = ({target}) => {
             if(!shipHasBeenSelected(ship)){
-                if(prevTiles) prevTiles.forEach(tile => setTdWhite(tile));
+                if(prevTiles) prevTiles.forEach(tile => resetTdColor(tile));
                 tiles = getArrayOfShipTiles(target)(ship);
                 if(tiles) tiles.forEach(tile => setTdRed(tile));
                 prevTiles = tiles;
@@ -68,8 +73,8 @@ const shipBtnClickListener = ship => {
         };
         //SHIP POSITION SELECT CALLBACK THAT MUTATES SHIP STATE AND CALLS UNSELECTS BUTTONS CALLBACK
         const changePositionOnClick = ({target}) => {
-            console.log(target)
-            if(target.style.background === 'red'){
+            console.log(target);
+            if(target.firstElementChild.style.background === 'red'){
                 console.log('red')
             }
             else {
@@ -90,10 +95,12 @@ const shipBtnClickListener = ship => {
             removeGridTdsClickListener(mouseoverCb);
             playerGridTds.forEach(td => td.removeEventListener('click', changePositionOnClick))
             removeGridTdsMouseoverListener(changePositionOnClick);
-        }     
+        };     
     };
     //ADD MOUSEOVER LISTENER
-    playerGridTds.forEach(td => td.addEventListener('mouseover', mouseoverCb));
+    playerGridTds.forEach(td => {
+        td.addEventListener('mouseover', mouseoverCb)
+    });
     //ADD CLICK LISTENER
     playerGridTds.forEach(td => td.addEventListener('click', changePositionOnClick));
     //ADD MOUSELEAVE LISTENER TO REMOVE EVENTS

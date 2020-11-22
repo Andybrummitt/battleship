@@ -28,15 +28,19 @@ const aiTileAvailable = tile => {
 ai.ships.forEach(ship => {
     const tile = aiGridTds[randomIndex()];
     const checkRandomTile = tile => {
-        let childPosition = parseInt(tile.textContent.slice(1));
+        //  GET TILE NUMBERS / INDEXES IN ROW
+        let childPosition = parseInt(tile.firstElementChild.firstElementChild.textContent.slice(1));
+        //  FUNCTION CALCULATES AND RETURNS THE AMOUNT OF SPACE LEFT FOR RANDOM TILE POSITION 
         const tileSpace = getNextTileSpace(tile)(aiTileAvailable)(ship)(childPosition);
         const spaceNeeded = Math.floor((ship.numTiles -1));
         if(ship.horizontal){
+            //  IF NOT ENOUGH SPACE WITH RANDOM TILE PICKED, CALL THE FUNCTION WITH A DIFFERENT RANDOM TILE
             if(tileSpace.horizontalSpaceLeft < spaceNeeded){
                 checkRandomTile(aiGridTds[randomIndex()]);
             };
-            //function resumes call after no recurse run through at line 49 call. Then if the for loop has already run we return before running it again
+            //  FUNCTION RESUMES CALL AFTER NO RECURSE RUN THROUGH AT LINE 39 CALL. THEN IF THE FOR LOOP HAS ALREADY RUN WE RETURN BEFORE RUNNING IT AGAIN
             if(ship.tilePositions.length > 0) return;
+            //  IF ENOUGH SPACE, SET UP SHIP IN THIS POSITION
             for(let i = 0; i <= spaceNeeded; i++){
                 ship.tilePositions.push(tile);
                 tile = tile.nextElementSibling;
@@ -57,6 +61,4 @@ ai.ships.forEach(ship => {
     };
     checkRandomTile(tile);
 });
-
-console.log(ai.ships)
 

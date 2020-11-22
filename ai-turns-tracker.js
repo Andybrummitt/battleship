@@ -1,21 +1,5 @@
 const test = Array.from(document.querySelectorAll('.test'));
 
-// const sortTilesVertical = arr => {
-//     return arr.sort((a, b) => {
-//         if(a.textContent[0] > b.textContent[0]) return 1;
-//         else if(b.textContent[0] > a.textContent[0]) return -1;
-//     });
-// };
-
-// const sortTilesHorizontal = arr => {
-//     console.log('from sorttileshorizontal')
-    
-//     return arr.sort((a, b) => a.textContent[1] - b.textContent[1]);
-// };
-
-// console.log(sortTilesHorizontal([].concat(test)))
-// console.log(sortTilesHorizontal(test))
-
 const AIturnsTracker = {
     hits: [],
     misses: [],
@@ -24,27 +8,26 @@ const AIturnsTracker = {
     hitStreakX: [],
     hitStreakY: [],
     getHitStreakArray: () => {
-        
+        //  IF THERE IS NO 2+ HITSTREAK ARRAY, RETURN FALSE
         if(AIturnsTracker.hitStreakX.every(arr => arr.length < 2) && AIturnsTracker.hitStreakY.every(arr => arr.length < 2)){
             return false;
         }
         else {
             let horizontalArr = [];
             let verticalArr = [];
-            // console.log('hsX', AIturnsTracker.hitStreakX)
+
+            //  FIND LONGEST HIT STREAKS
             for(let arr of AIturnsTracker.hitStreakX){
-                // console.log('hitS-X arr', arr)
                 if(arr.includes(AIturnsTracker.lastHit) && arr.length > horizontalArr.length){
                     horizontalArr = arr;
-                    // console.log('horArr', arr)
                 };
             };
             for(let arr of AIturnsTracker.hitStreakY){
                 if(arr.includes(AIturnsTracker.lastHit) && arr.length > verticalArr.length){
                     verticalArr = arr;
-                    // console.log('arr', arr)
                 };
             };
+            //  RETURN THE LONGEST HITSTREAK
             return horizontalArr.length > verticalArr.length ? horizontalArr : verticalArr;
         };
     },
@@ -53,7 +36,5 @@ const AIturnsTracker = {
         AIturnsTracker.hitStreakY = [];
     }
 };
-
-console.log(AIturnsTracker.getHitStreakArray())
 
 export default AIturnsTracker;
