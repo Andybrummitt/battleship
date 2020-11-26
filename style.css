@@ -17,6 +17,7 @@ body {
   opacity: 0.3;
 }
 
+/* -------------------- TABLE STYLING ------------------------ */
 #grid-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -25,6 +26,9 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 90%;
 }
 
@@ -36,15 +40,48 @@ body {
 
 #grid-container table td {
   border: 1px solid black;
-  text-align: center;
-  padding-top: 0;
   background: -webkit-gradient(linear, left top, left bottom, from(#3a78c9), to(#267aad));
   background: linear-gradient(#3a78c9, #267aad);
 }
 
+#player-grid td {
+  height: 50px;
+  width: 50px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#3a78c9), to(#267aad));
+  background: linear-gradient(#3a78c9, #267aad);
+}
+
+#ai-grid {
+  background: red;
+  width: 50%;
+  height: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .text-div {
   z-index: 2;
+  position: absolute;
+  top: 1%;
+  left: 1%;
+}
+
+.td-container-div {
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
   position: relative;
+  background: -webkit-gradient(linear, left top, left bottom, from(#3a78c9), to(#267aad));
+  background: linear-gradient(#3a78c9, #267aad);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .wave-1-phase1 {
@@ -149,6 +186,78 @@ body {
   bottom: 75%;
   left: 70%;
   border-bottom-left-radius: 50%;
+}
+
+/*  --------------------- HIT ANIMATION -------------- */
+.cannonball {
+  background: #424242;
+  border-radius: 50%;
+  -webkit-animation: drop 2s ease;
+          animation: drop 2s ease;
+}
+
+@-webkit-keyframes drop {
+  from {
+    height: 50%;
+    width: 50%;
+  }
+  to {
+    height: 10%;
+    width: 10%;
+  }
+}
+
+@keyframes drop {
+  from {
+    height: 50%;
+    width: 50%;
+  }
+  to {
+    height: 10%;
+    width: 10%;
+  }
+}
+
+.flame {
+  bottom: 20%;
+  position: absolute;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+  border-top-left-radius: 50%;
+  -webkit-transform: rotate(-45deg) scale(1.5, 1.5);
+          transform: rotate(-45deg) scale(1.5, 1.5);
+}
+
+.red {
+  width: 40%;
+  height: 40%;
+  background: OrangeRed;
+  -webkit-box-shadow: 0px 0px 0.25rem 0.125rem OrangeRed;
+          box-shadow: 0px 0px 0.25rem 0.125rem OrangeRed;
+}
+
+.orange {
+  width: 30%;
+  height: 30%;
+  background: orange;
+  -webkit-box-shadow: 0px 0px 0.5rem 0.125rem orange;
+          box-shadow: 0px 0px 0.5rem 0.125rem orange;
+}
+
+.yellow {
+  width: 20%;
+  height: 20%;
+  background: gold;
+  -webkit-box-shadow: 0px 0px 0.5rem 0.125rem gold;
+          box-shadow: 0px 0px 0.5rem 0.125rem gold;
+}
+
+.white {
+  width: 10%;
+  height: 10%;
+  background: white;
+  -webkit-box-shadow: 0px 0px 0.4rem 0.125rem white;
+          box-shadow: 0px 0px 0.4rem 0.125rem white;
 }
 
 .ship-hover {

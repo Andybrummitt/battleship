@@ -15,8 +15,16 @@ const colorTileHit = tile => {
 };
 
 const cannonballAnimation = tile => {
+    console.log('cannonball animation')
+    Array.from(tile.firstElementChild.children).forEach(child => {
+        if(child.className !== 'text-div') child.className = '';
+    });
     tile.firstElementChild.lastElementChild.classList.add('cannonball');
-    tile.firstElementChild.lastElementChild.classList.remove('hide');
+    console.log(tile.firstElementChild.classList)
+    console.log(tile.firstElementChild.firstElementChild.classList)
+    console.log(tile.firstElementChild.children[1].classList)
+    console.log(tile.firstElementChild.children[2].classList)
+    console.log(tile.firstElementChild.lastElementChild.classList)
 };
 
 const fireAnimation = tile => {
@@ -36,12 +44,19 @@ const fireAnimation = tile => {
     div4.classList.add('yellow');
     div5.classList.add('white');
     console.log(tileDivs)
-}
+};
 
-const animateHit = tile => {
+const animateHitPlayerGrid = tile => {
     cannonballAnimation(tile);
     tile.addEventListener('animationend', e => {
         fireAnimation(tile);
+    });
+};
+
+const animateHitAIGrid = tile => {
+    cannonballAnimation(tile);
+    tile.addEventListener('animationend', e => {
+        colorTileHit(tile);
     });
 };
 
@@ -55,7 +70,8 @@ const animateMiss = tile => {
 }
 
 export {
-    animateHit,
+    animateHitPlayerGrid,
+    animateHitAIGrid,
     animateMiss,
     colorTileHit,
     colorTileMiss

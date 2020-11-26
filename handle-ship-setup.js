@@ -4,7 +4,7 @@ import domObj from './dom-obj.js';
 import { ai, user } from './players-objs.js';
 import { startGame, setUpGame } from './play-game.js';
 import { isTd } from './ai-turn-algorithm.js';
-import { addWaveAnimation, randomTilesArr } from './wave-animation.js';
+import { addWaveAnimation } from './wave-animation.js';
 
 //---------------------- SET COLOR FUNCTIONS -----------------------------
 

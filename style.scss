@@ -2,6 +2,9 @@
     font-family: sans-serif;
 }
 
+$sea-color: linear-gradient(#3a78c9, #267aad);
+$cannonball-color: #424242;
+
 body {
     margin: 0;
     padding: 0;
@@ -15,27 +18,56 @@ body {
 .fade {
     opacity: 0.3;
 }
+/* -------------------- TABLE STYLING ------------------------ */
 
 #grid-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 90%;
     table {
         border: 1px solid black;
         margin: 5%;
         border-collapse: collapse;
         td {
-            border: 1px solid black;
-            text-align: center;       
-            padding-top: 0; 
-            background: linear-gradient(#3a78c9, #267aad); 
+            border: 1px solid black;  
+            background: $sea-color; 
         }
     }
 }
 
+#player-grid {
+     td {
+        height: 50px;
+        width: 50px;    
+        background: $sea-color;
+    }
+} 
+
+#ai-grid {
+    background: red;
+    width: 50%;
+    height: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .text-div {
     z-index: 2;
+    position: absolute;
+    top: 1%;
+    left: 1%;
+}
+
+.td-container-div {
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
     position: relative;
+    background: $sea-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 //  ------------------------  WAVES STYLING  ------------------------------------ //
@@ -110,6 +142,61 @@ body {
     border-bottom-left-radius: 50%;
 }
 
+/*  --------------------- HIT ANIMATION -------------- */
+
+.cannonball {
+    background: $cannonball-color;
+    border-radius: 50%;
+    animation: drop 2s ease;
+}
+
+@keyframes drop {
+    from {
+        height: 50%;
+        width: 50%;
+    }
+    to {
+        height: 10%;
+        width: 10%;
+    }
+}
+
+.flame {
+    bottom: 20%;
+    position:absolute;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-top-left-radius: 50%;
+    transform:rotate(-45deg) scale(1.5,1.5);
+}
+  
+.red {
+    width: 40%;
+    height: 40%;
+    background:OrangeRed;
+    box-shadow: 0px 0px 0.25rem 0.125rem OrangeRed;
+}
+
+.orange {
+  width: 30%;
+  height: 30%;
+  background:orange;
+  box-shadow: 0px 0px 0.5rem 0.125rem orange;
+}
+
+.yellow {
+    width: 20%;
+    height: 20%;
+    background:gold;
+    box-shadow: 0px 0px 0.5rem 0.125rem gold;
+}
+
+.white {
+    width: 10%;
+    height: 10%;
+    background:white;
+    box-shadow: 0px 0px 0.4rem 0.125rem white;
+}
 
 .ship-hover {
     background: red;

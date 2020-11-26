@@ -28,9 +28,11 @@ const createGrid = (id) => {
         appendElToParent(th)(colScopeRow);
     });
 
+    const tbody = table.lastElementChild;
+
     rowContentList.forEach(arrElem => {
         const tr = document.createElement('tr');
-        appendElToParent(tr)(table);
+        appendElToParent(tr)(tbody);
         const th = document.createElement('th');
         th.scope = 'row';
         addTextToElement(th)(arrElem);
@@ -39,8 +41,7 @@ const createGrid = (id) => {
             const td = document.createElement('td');
             //  DIV CONTAINER IS FOR WAVES
             const div = document.createElement('div');
-            div.style.height = '100%';
-            div.style.width = '100%';
+            div.classList.add('td-container-div');
             //  CREATING WAVES HERE
             const wave1 = createWave(1);
             const wave2 = createWave(2);
@@ -51,9 +52,6 @@ const createGrid = (id) => {
             textDiv.textContent = arrElem + num;
             textDiv.classList.add('text-div');
             //THIS STOPS MOUSEOVER EVENT CALLING ON THE INNER DIV
-            div.style.pointerEvents = 'none';
-            div.style.position = 'relative';
-            div.style.background = 'linear-gradient(#3a78c9, #267aad)'
             div.append(textDiv);
             div.append(wave1);
             div.append(wave2);

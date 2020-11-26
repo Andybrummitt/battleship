@@ -4,6 +4,7 @@ import { aiTilesPositionsArr, handleTurn, isTd } from './ai-turn-algorithm.js';
 import { ai, user } from './players-objs.js';
 import { addHoleToShip, shipSunk, wonGame, isHit, isMiss, executeAfter1Sec, clearInputAndDisableGuessBtn, removeHitTile, isUnavailable, removeEmptyArrays, clearArray, colorTileHit, colorTileMiss } from './game-utils.js';
 import AIturnsTracker from './ai-turns-tracker.js';
+import { animateHitPlayerGrid, animateHitAIGrid, animateMiss } from './hit-animation.js';
 
 const { shipSetupContainer, guessForm, submitBtn, guessInput, getTds, aiGrid, playerGrid } = domObj;
 
@@ -158,7 +159,7 @@ const handleSubmit = async e => {
         if(isHit(guess)(aiTilesPositionsArr)){
             const shipHitNotif = await notification(changeNotifBody(`${guess}: Hit!`));   
             //  COLOR HIT TILE AND REMOVE FROM TILES ARR
-            colorTileHit(playerGuessTile);
+            animateHitAIGrid(playerGuessTile);
             removeHitTile(aiTilesPositionsArr)(playerGuessTile);
             const shipHit = addHoleToShip(ai.ships)(playerGuessTile);
             if(shipSunk(shipHit)){
@@ -172,7 +173,7 @@ const handleSubmit = async e => {
         }
         else {
             const shipMissNotif = await notification(changeNotifBody(`${guess}: Miss!`));
-            colorTileMiss(playerGuessTile);
+            animateMiss(playerGuessTile);
         };
         //AI TURN
         const AIturnNotif = await notification(changeNotifBody(`AI turn`));
@@ -180,7 +181,7 @@ const handleSubmit = async e => {
         if(isHit(AIguessTile.firstElementChild.firstElementChild.textContent)(userTilesPositionsArr)){
             addHitInfoToTracker(AIguessTile);
             const shipHitNotif = await notification(changeNotifBody(`${AIguessTile.firstElementChild.firstElementChild.textContent}: Hit!`));   
-            colorTileHit(AIguessTile);
+            animateHitPlayerGrid(AIguessTile);
             removeHitTile(userTilesPositionsArr)(AIguessTile);
             const shipHit = addHoleToShip(user.ships)(AIguessTile);
             if(shipSunk(shipHit)){
@@ -196,7 +197,7 @@ const handleSubmit = async e => {
         else {
             AIturnsTracker.misses.push(AIguessTile);
             const shipMissNotif = await notification(changeNotifBody(`${AIguessTile.firstElementChild.firstElementChild.textContent}: Miss!`));
-            colorTileMiss(AIguessTile)
+            animateMiss(AIguessTile)
         };
         submitBtn.disabled = false;
         guessInput.disabled = false;

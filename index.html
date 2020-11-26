@@ -16,14 +16,20 @@
         <div class="container">
         <div id="grid-container">
             <table id="ai-grid">
-                <tr class="colscope-row" id="1">
-                    <td></td>
-                </tr>
+                <thead>
+                    <tr class="colscope-row" id="1">
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
             </table>
             <table id="player-grid">
-                <tr class="colscope-row" id="2">
-                    <td></td>
-                </tr>
+                <thead>
+                    <tr class="colscope-row" id="2">
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
             </table>
         </div>
         <div id="ship-setup-container">
@@ -33,6 +39,14 @@
             <ul id="ships-selected-ul">
             </ul>
         </div>
+        <ul>
+            <li class="test">a2</li>
+            <li class="test">a5</li>
+            <li class="test">a1</li>
+            <li class="test">a4</li>
+            <li class="test">a6</li>
+            <li class="test">a3</li>
+        </ul>
         <form id="guess-form" class="hide">
             <label for="guess-input">Tile Guess: </label>
             <input type="text" id="guess-input" maxlength="3" required>
@@ -43,7 +57,6 @@
             <h1 id="notification-title">notificationbox</h1>
             <p id="notification-text"></p>
         </div>
-
        <script type="module" src="index.js"></script>
    </body>
 </html>

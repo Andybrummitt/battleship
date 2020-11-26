@@ -1,9 +1,10 @@
 import { playerGridTds } from './ai-turn-algorithm.js';
 import turns from './ai-turns-tracker.js';
 import domObj from './dom-obj.js';
+import { user } from './players-objs.js';
 
-const prevTurns = turns.hits.concat(turns.misses);
-export const tilesLeft = [...playerGridTds].filter(td => !prevTurns.includes(td));
+
+
 
 //  KEEP GENERATING RANDOM NUMS UNTIL WE GET A UNIQUE ONE
 const randomNumGenerate = tilesLeftCopy => randomNumArray => {
@@ -47,18 +48,21 @@ const removeWaveClass = tile => className => {
 const changeWavePhase = tile => {
     for(let child of tile.children){
         for(let grandChild of child.children){
-            const wavePhaseText = grandChild.classList.value;
-            const phaseNumber = wavePhaseText.slice(wavePhaseText.length-1);
-            let oppositeWavePhase;
-            if(phaseNumber === '1'){
-                oppositeWavePhase = wavePhaseText.substring(0, wavePhaseText.length-1).concat('2');
-            }
-            else {
-                oppositeWavePhase = wavePhaseText.substring(0, wavePhaseText.length-1).concat('1');
-            };
-            if(grandChild.classList.contains(wavePhaseText)){
-                grandChild.classList.remove(wavePhaseText);
-                grandChild.classList.add(oppositeWavePhase);
+            if(grandChild.className !== 'text-div'){
+                const wavePhaseText = grandChild.classList.value;
+                // console.log(wavePhaseText)
+                const phaseNumber = wavePhaseText.slice(wavePhaseText.length-1);
+                let oppositeWavePhase;
+                if(phaseNumber === '1'){
+                    oppositeWavePhase = wavePhaseText.substring(0, wavePhaseText.length-1).concat('2');
+                }
+                else {
+                    oppositeWavePhase = wavePhaseText.substring(0, wavePhaseText.length-1).concat('1');
+                };
+                if(grandChild.classList.contains(wavePhaseText)){
+                    grandChild.classList.remove(wavePhaseText);
+                    grandChild.classList.add(oppositeWavePhase);
+                };
             };
         };
     };
@@ -102,9 +106,12 @@ export const addWaveAnimation = async randomTilesArr => {
     }
 };
 
-export let randomTilesArr = randomTiles(tilesLeft);
-
 setInterval(() => {
+    const userTiles = user.getAllTilePositions();
+    const prevTurns = turns.hits.concat(turns.misses);
+    const tilesLeft = [...playerGridTds].filter(td => !prevTurns.includes(td) && !userTiles.includes(td));
+    let randomTilesArr = randomTiles(tilesLeft);
+    console.log(userTiles)
     addWaveAnimation(randomTilesArr);
     randomTilesArr = randomTiles(tilesLeft);
 }, 3000);
@@ -112,5 +119,3 @@ setInterval(() => {
 //set interval for this function, change every couple seconds or something
 //this whole module needs to be called after client selects ships
 
-console.log(prevTurns)
-console.log(tilesLeft)
