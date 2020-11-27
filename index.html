@@ -13,45 +13,45 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <h1 id="game-title">BATTLESHIP</h1>
         <div class="container">
-        <div id="grid-container">
-            <table id="ai-grid">
-                <thead>
-                    <tr class="colscope-row" id="1">
-                        <td></td>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-            <table id="player-grid">
-                <thead>
-                    <tr class="colscope-row" id="2">
-                        <td></td>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-        <div id="ship-setup-container">
-            <div id="ship-select-btns"></div>
-            <p id="ship-select-text"></p>
-            <button id="toggle-ship-direction">Toggle Ship Direction</button>
-            <ul id="ships-selected-ul">
-            </ul>
-        </div>
-        <ul>
-            <li class="test">a2</li>
-            <li class="test">a5</li>
-            <li class="test">a1</li>
-            <li class="test">a4</li>
-            <li class="test">a6</li>
-            <li class="test">a3</li>
-        </ul>
-        <form id="guess-form" class="hide">
-            <label for="guess-input">Tile Guess: </label>
-            <input type="text" id="guess-input" maxlength="3" required>
-            <button type="submit" id="submit-btn">Submit Guess</button>
-        </form>
+            <section id="ai-grid-container">
+                <h2 id="ai-grid-title">Opponent's Grid</h2>
+                <table id="ai-grid">
+                    <thead>
+                        <tr class="colscope-row" id="1">
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+            <section id="player-grid-container">
+                <h2 id="player-grid-title">Your Grid</h2>
+                    <table id="player-grid">
+                        <thead>
+                            <tr class="colscope-row" id="2">
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+            </section>
+        <section id="ui-controls">
+            <div id="ship-setup-container">
+                <h2>Select your ships</h2>
+                <div id="ship-select-btns"></div>
+                <p id="ship-select-text"></p>
+                <button id="toggle-ship-direction">Toggle Ship Direction</button>
+                <ul id="ships-selected-ul">
+                </ul>
+            </div>
+            <form id="guess-form" class="hide">
+                <label for="guess-input">Tile Guess: </label>
+                <input type="text" id="guess-input" maxlength="3" required>
+                <button type="submit" id="submit-btn">Submit Guess</button>
+            </form>
+        </section>
         </div>
         <div id="notification-box" class="hide">
             <h1 id="notification-title">notificationbox</h1>

@@ -3,9 +3,6 @@ import turns from './ai-turns-tracker.js';
 import domObj from './dom-obj.js';
 import { user } from './players-objs.js';
 
-
-
-
 //  KEEP GENERATING RANDOM NUMS UNTIL WE GET A UNIQUE ONE
 const randomNumGenerate = tilesLeftCopy => randomNumArray => {
     let randomNum = Math.floor(Math.random() * tilesLeftCopy.length);
@@ -107,11 +104,12 @@ export const addWaveAnimation = async randomTilesArr => {
 };
 
 setInterval(() => {
+    console.log('woop')
     const userTiles = user.getAllTilePositions();
     const prevTurns = turns.hits.concat(turns.misses);
     const tilesLeft = [...playerGridTds].filter(td => !prevTurns.includes(td) && !userTiles.includes(td));
     let randomTilesArr = randomTiles(tilesLeft);
-    console.log(userTiles)
+    console.log(randomTilesArr)
     addWaveAnimation(randomTilesArr);
     randomTilesArr = randomTiles(tilesLeft);
 }, 3000);

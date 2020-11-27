@@ -1,5 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Text:wght@400;500&display=swap');
+
 :root {
-    font-family: sans-serif;
+    font-family: 'Big Shoulders Stencil Text', cursive;
+}
+
+@mixin flexCenter($direction){
+    display: flex;
+    flex-direction: $direction;
+    align-items: center;
+    justify-content: center;
 }
 
 $sea-color: linear-gradient(#3a78c9, #267aad);
@@ -18,38 +27,92 @@ body {
 .fade {
     opacity: 0.3;
 }
+
+#game-title {
+    text-align: center;
+    font-size: 3rem;
+}
+
 /* -------------------- TABLE STYLING ------------------------ */
 
-#grid-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 90%;
-    table {
-        border: 1px solid black;
-        margin: 5%;
-        border-collapse: collapse;
-        td {
-            border: 1px solid black;  
-            background: $sea-color; 
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    height: 87vh;
+    width: 100vw;
+    background: #f2f2f2;
+}
+
+#ai-grid-container {
+    @include flexCenter(column);
+}
+
+#player-grid-container {
+    @include flexCenter(column);
+}
+
+#ui-controls {
+    #ship-setup-container {
+        @include flexCenter(column);
+        #ship-select-btns {
+            @include flexCenter(column);
+        }
+        .ship-select-btn {
+            width: 100%;
+            padding: 0.3rem;
+            margin: 0.4rem;
+            font-size: 1.2rem;
+            box-shadow: 0rem 0rem 0.2rem 0rem #949494;
+            background:#f7ffff;
+            border-radius: 0.5rem;
+            border: none;
+        }
+        .ship-select-btn:hover {
+            background: brown;
+            color: white;
+            transition: 0.4s ease;
+        }
+        #toggle-ship-direction {
+            @extend .ship-select-btn;
+            width: auto;
         }
     }
 }
 
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    td {
+        border: 1px solid black; 
+        padding: 0; 
+    }
+}
+
 #player-grid {
+    width: 40vw;
+    height: 40vw;
      td {
-        height: 50px;
-        width: 50px;    
         background: $sea-color;
+        width: calc(40vw/11);
+        height: calc(40vw/11);
     }
 } 
 
 #ai-grid {
-    background: red;
-    width: 50%;
-    height: 50%;
-    margin-left: auto;
-    margin-right: auto;
+    background: white;
+    width: 20vw;
+    height: 20vw;
+    td {
+        height: calc(20vw/11);
+        width: calc(20vw/11);
+        font-size: 0.7rem;
+    }
+    tr:nth-child(odd) td:nth-child(even) {
+        background: #f2f2f2;
+    }
+    tr:nth-child(even) td:nth-child(odd) {
+        background: #f2f2f2;
+    }
 }
 
 .text-div {
@@ -60,11 +123,10 @@ body {
 }
 
 .td-container-div {
-    height: 100%;
     width: 100%;
+    height: 100%;
     pointer-events: none;
     position: relative;
-    background: $sea-color;
     display: flex;
     justify-content: center;
     align-items: center;
