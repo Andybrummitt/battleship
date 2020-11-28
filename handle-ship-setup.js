@@ -5,16 +5,18 @@ import { ai, user } from './players-objs.js';
 import { startGame, setUpGame } from './play-game.js';
 import { isTd } from './ai-turn-algorithm.js';
 import { addWaveAnimation } from './wave-animation.js';
+import setShipTiles from './make-ship-shape.js';
+import setShipStyles from './make-ship-shape.js';
+import { shipSet } from './game-utils.js';
 
 //---------------------- SET COLOR FUNCTIONS -----------------------------
 
-
-
-//maybe add .firstElementChild. to setTd
 const setTd = color => td => td.firstElementChild.style.background = color;
-const resetTdColor = setTd('linear-gradient(#3a78c9, #267aad)');
 const setTdRed = setTd('red');
 const setTdGrey = setTd('grey');
+//  REMOVE ALL CHILD CLASSNAMES THAT INCLUDE SHIP STYLING
+const resetTdColor = td => td.firstElementChild.lastElementChild.className = '';
+//td => td.firstElementChild.className = 'ship-color';
 
 // ----------------- GET DOM ELEMENTS FUNCTIONS --------------------------
 
@@ -67,22 +69,20 @@ const shipBtnClickListener = ship => {
             if(!shipHasBeenSelected(ship)){
                 if(prevTiles) prevTiles.forEach(tile => resetTdColor(tile));
                 tiles = getArrayOfShipTiles(target)(ship);
-                if(tiles) tiles.forEach(tile => setTdRed(tile));
+                if(tiles) setShipTiles(tiles)(ship)(true);                
                 prevTiles = tiles;
             };
         };
         //SHIP POSITION SELECT CALLBACK THAT MUTATES SHIP STATE AND CALLS UNSELECTS BUTTONS CALLBACK
         const changePositionOnClick = ({target}) => {
             console.log(target);
-            if(target.firstElementChild.style.background === 'red'){
-                console.log('red')
-            }
-            else {
+            if(shipSet(target)){
                 enableUnselectedShipBtns(shipBtns)(user.ships);
                 return;
             }
             ship.tilePositions = tiles;
-            tiles.forEach(tile => setTdGrey(tile));
+            // tiles.forEach(tile => setTdGrey(tile));
+            setShipStyles(tiles)(ship)(false);
             //if all picked hide btns and start game
             if(shipsPicked(user.ships)){
                 startGame(setUpGame)(guessForm);
@@ -93,7 +93,7 @@ const shipBtnClickListener = ship => {
     const removeEventsFromTds = () => {
         if(shipHasBeenSelected(ship)){
             removeGridTdsClickListener(mouseoverCb);
-            playerGridTds.forEach(td => td.removeEventListener('click', changePositionOnClick))
+            playerGridTds.forEach(td => td.removeEventListener('click', changePositionOnClick));
             removeGridTdsMouseoverListener(changePositionOnClick);
         };     
     };

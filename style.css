@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Text:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
 :root {
   font-family: 'Big Shoulders Stencil Text', cursive;
 }
@@ -51,6 +52,22 @@ body {
 }
 
 #player-grid-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#ui-controls {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -186,6 +203,86 @@ table td {
           align-items: center;
 }
 
+/*  --------------------------------- SHIP STYLING -------------------------------------    */
+.active {
+  opacity: 0.7;
+  -webkit-box-shadow: 0px 0px !important;
+          box-shadow: 0px 0px !important;
+}
+
+.ship-sunk {
+  background: green;
+  opacity: 0.5;
+  -webkit-box-shadow: 0px 0px !important;
+          box-shadow: 0px 0px !important;
+}
+
+/*  --------------- VERTICAL ------------------- */
+.ship-body-vertical {
+  width: 80%;
+  height: 100%;
+  background: #595959;
+}
+
+.ship-head-vertical {
+  background: -webkit-gradient(linear, left top, left bottom, from(#828282), to(#595959));
+  background: linear-gradient(#828282, #595959);
+  position: absolute;
+  width: 80%;
+  bottom: 0px;
+  height: 80%;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  -webkit-box-shadow: 0 -0.1rem 0.3rem 0.05rem white;
+          box-shadow: 0 -0.1rem 0.3rem 0.05rem white;
+}
+
+.ship-tail-vertical {
+  background: -webkit-gradient(linear, left top, left bottom, from(#595959), to(#828282));
+  background: linear-gradient(#595959, #828282);
+  position: absolute;
+  width: 80%;
+  top: 0px;
+  height: 80%;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  -webkit-box-shadow: 0 0.1rem 0.3rem 0.05rem white;
+          box-shadow: 0 0.1rem 0.3rem 0.05rem white;
+}
+
+/*  --------------- HORIZONTAL ------------------- */
+.ship-body-horizontal {
+  width: 100%;
+  height: 80%;
+  background: #595959;
+}
+
+.ship-head-horizontal {
+  background: -webkit-gradient(linear, left top, right top, from(#828282), to(#595959));
+  background: linear-gradient(0.25turn, #828282, #595959);
+  position: absolute;
+  width: 80%;
+  right: 0px;
+  height: 80%;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  -webkit-box-shadow: -0.1rem 0 0.3rem 0.05rem white;
+          box-shadow: -0.1rem 0 0.3rem 0.05rem white;
+}
+
+.ship-tail-horizontal {
+  background: -webkit-gradient(linear, left top, right top, from(#595959), to(#828282));
+  background: linear-gradient(0.25turn, #595959, #828282);
+  position: absolute;
+  width: 80%;
+  left: 0px;
+  height: 80%;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  -webkit-box-shadow: 0.1rem 0 0.3rem 0.05rem white;
+          box-shadow: 0.1rem 0 0.3rem 0.05rem white;
+}
+
 .wave-1-phase1 {
   background: lightgray;
   height: 5%;
@@ -290,12 +387,21 @@ table td {
   border-bottom-left-radius: 50%;
 }
 
+/*  ----------------------  MISS STYLING ------------------- */
+.miss {
+  font-size: 2em;
+  color: red;
+  font-family: 'Questrial', sans-serif;
+}
+
 /*  --------------------- HIT ANIMATION -------------- */
 .cannonball {
-  background: #424242;
+  background: #1c1c1c;
   border-radius: 50%;
   -webkit-animation: drop 2s ease;
           animation: drop 2s ease;
+  z-index: 1;
+  position: absolute;
 }
 
 @-webkit-keyframes drop {
@@ -328,6 +434,7 @@ table td {
   border-top-left-radius: 50%;
   -webkit-transform: rotate(-45deg) scale(1.5, 1.5);
           transform: rotate(-45deg) scale(1.5, 1.5);
+  z-index: 1;
 }
 
 .red {
@@ -360,6 +467,10 @@ table td {
   background: white;
   -webkit-box-shadow: 0px 0px 0.4rem 0.125rem white;
           box-shadow: 0px 0px 0.4rem 0.125rem white;
+}
+
+.ship-sunk {
+  background: red;
 }
 
 .ship-hover {

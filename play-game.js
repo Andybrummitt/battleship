@@ -2,9 +2,9 @@ import domObj from './dom-obj.js';
 import { notification, changeNotifBody, addClassToElem, removeClassFromElem } from './game-notifications.js';
 import { aiTilesPositionsArr, handleTurn, isTd } from './ai-turn-algorithm.js';
 import { ai, user } from './players-objs.js';
-import { addHoleToShip, shipSunk, wonGame, isHit, isMiss, executeAfter1Sec, clearInputAndDisableGuessBtn, removeHitTile, isUnavailable, removeEmptyArrays, clearArray, colorTileHit, colorTileMiss } from './game-utils.js';
+import { addHoleToShip, shipSunk, wonGame, isHit, isMiss, executeAfter1Sec, clearInputAndDisableGuessBtn, removeHitTile, isUnavailable, removeEmptyArrays, clearArray } from './game-utils.js';
 import AIturnsTracker from './ai-turns-tracker.js';
-import { animateHitPlayerGrid, animateHitAIGrid, animateMiss } from './hit-animation.js';
+import { animateHitPlayerGrid, animateHitAIGrid, animateMiss, colorShipSunk } from './hit-animation.js';
 
 const { shipSetupContainer, guessForm, submitBtn, guessInput, getTds, aiGrid, playerGrid } = domObj;
 
@@ -187,6 +187,7 @@ const handleSubmit = async e => {
             if(shipSunk(shipHit)){
                 shipHit.sunk = true;
                 clearHitStreakArr(shipHit);
+                colorShipSunk(shipHit.tilePositions)
                 const shipSunkNotif = await notification(changeNotifBody(`${shipHit.name}: Sunk!`));
                 if(wonGame(user.ships)){
                     const wonGameNotif = await notification(changeNotifBody(`Game Over!`, `AI Wins!`));

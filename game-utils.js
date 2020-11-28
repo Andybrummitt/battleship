@@ -57,6 +57,8 @@ const colorTileMiss = tile => {
     tile.firstElementChild.style.background = 'red';
 };
 
+const shipSet = tile => tile.firstElementChild.lastElementChild.classList.contains('ship-set');
+
 const clearArray = arr => {
     arr.splice(0, arr.length);
     return arr;
@@ -75,5 +77,6 @@ export {
     clearArray,
     removeEmptyArrays,
     colorTileHit,
-    colorTileMiss
+    colorTileMiss,
+    shipSet
 };

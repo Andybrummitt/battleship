@@ -45,7 +45,8 @@ const removeWaveClass = tile => className => {
 const changeWavePhase = tile => {
     for(let child of tile.children){
         for(let grandChild of child.children){
-            if(grandChild.className !== 'text-div'){
+            //  DO NOT REMOVE TEXT OR SHIP CLASSES
+            if(!grandChild.classList.contains('text-div')&& !grandChild.classList.contains('active')){
                 const wavePhaseText = grandChild.classList.value;
                 // console.log(wavePhaseText)
                 const phaseNumber = wavePhaseText.slice(wavePhaseText.length-1);
@@ -72,8 +73,11 @@ const removeHide = tile => {
 const addHide = tile => {
     for(let child of tile.children){
         for(let grandChild of child.children){
-            if(!grandChild.textContent){
-                grandChild.classList.add('hide');
+            //  IF GRANDCHILD CONTAINS WAVE CHILD
+            if(grandChild.classList[0]){
+                if(grandChild.classList[0].slice(0,4) === 'wave'){
+                    grandChild.classList.add('hide');
+                } 
             }
         };
     };
@@ -104,16 +108,12 @@ export const addWaveAnimation = async randomTilesArr => {
 };
 
 setInterval(() => {
-    console.log('woop')
     const userTiles = user.getAllTilePositions();
     const prevTurns = turns.hits.concat(turns.misses);
     const tilesLeft = [...playerGridTds].filter(td => !prevTurns.includes(td) && !userTiles.includes(td));
     let randomTilesArr = randomTiles(tilesLeft);
-    console.log(randomTilesArr)
     addWaveAnimation(randomTilesArr);
     randomTilesArr = randomTiles(tilesLeft);
 }, 3000);
 
-//set interval for this function, change every couple seconds or something
-//this whole module needs to be called after client selects ships
 

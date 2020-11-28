@@ -57,7 +57,10 @@ const createGrid = (id) => {
             div.append(wave2);
             div.append(wave3);
             div.append(wave4);
+            const shipStyleDiv = document.createElement('div');
+            div.append(shipStyleDiv);
             td.appendChild(div);
+            
             tr.append(td);
         };
     });

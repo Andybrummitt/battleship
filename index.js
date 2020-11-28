@@ -11,6 +11,7 @@ import { aiTilesPositionsArr } from './ai-turn-algorithm.js';
 import { addClassToElem } from './game-notifications.js';
 import { setUpGame } from './play-game.js';
 import './wave-animation.js';
+import './make-ship-shape.js';
 
 const shipsSelectedUl = document.querySelector('#ships-selected-ul');
 
