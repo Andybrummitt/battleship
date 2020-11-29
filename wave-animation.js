@@ -14,7 +14,8 @@ const randomNumGenerate = tilesLeftCopy => randomNumArray => {
 
 const randomTiles = tilesLeft => {
     const tilesLeftCopy = [...tilesLeft];
-    const randomAmount = Math.floor(tilesLeft.length/10);
+    //CHANGE HERE TO TILESLEFT.LENGTH/1 FOR DEPLOY -----------------------------<<<<<
+    const randomAmount = Math.floor(tilesLeft.length/2);
     const randomNumArray = [];
     const randomTiles = [];
     
@@ -46,7 +47,7 @@ const changeWavePhase = tile => {
     for(let child of tile.children){
         for(let grandChild of child.children){
             //  DO NOT REMOVE TEXT OR SHIP CLASSES
-            if(!grandChild.classList.contains('text-div')&& !grandChild.classList.contains('active')){
+            if(!grandChild.classList.contains('text-div') && !grandChild.classList.contains('active') && !grandChild.classList.contains('cannonball')){
                 const wavePhaseText = grandChild.classList.value;
                 // console.log(wavePhaseText)
                 const phaseNumber = wavePhaseText.slice(wavePhaseText.length-1);
@@ -77,11 +78,11 @@ const addHide = tile => {
             if(grandChild.classList[0]){
                 if(grandChild.classList[0].slice(0,4) === 'wave'){
                     grandChild.classList.add('hide');
-                } 
-            }
+                }; 
+            };
         };
     };
-}
+};
 
 const addRemoveHideAll = randomTilesArr => {
     randomTilesArr.forEach(tile => {
@@ -112,7 +113,6 @@ setInterval(() => {
     const prevTurns = turns.hits.concat(turns.misses);
     const tilesLeft = [...playerGridTds].filter(td => !prevTurns.includes(td) && !userTiles.includes(td));
     let randomTilesArr = randomTiles(tilesLeft);
-    console.log(randomTilesArr);
     addWaveAnimation(randomTilesArr);
     randomTilesArr = randomTiles(tilesLeft);
 }, 3000);

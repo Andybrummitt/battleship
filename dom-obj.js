@@ -7,6 +7,7 @@ const domObj = {
     notifBox: document.querySelector('#notification-box'),
     notifTitle: document.querySelector('#notification-title'),
     notifText: document.querySelector('#notification-text'),
+    shipBtnsContainer: document.querySelector('#ship-setup-container'),
     guessForm: document.querySelector('#guess-form'),
     guessInput: document.querySelector('#guess-input'),
     submitBtn: document.querySelector('#submit-btn'),

@@ -13,10 +13,12 @@
     justify-content: center;
 }
 
-$sea-color: linear-gradient(#3a78c9, #267aad);
+$sea-color: radial-gradient(#3a78c9 30%, #336bb5);
 $cannonball-color: #1c1c1c;
 $ship-main-color: #595959;
 $ship-gradient-color:#828282;
+
+$container-color: #f2f2f2;
 
 body {
     margin: 0;
@@ -29,7 +31,7 @@ button {
 }
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
 .fade {
@@ -47,7 +49,7 @@ header {
 
 #game-title {
     text-align: center;
-    font-size: 3rem;
+    font-size: 3em;
 }
 
 /* -------------------- TABLE STYLING ------------------------ */
@@ -55,43 +57,76 @@ header {
 .container {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    background: #f2f2f2;
+    background: white;
 }
 
 #ai-grid-container {
+    text-align: center;
+    background: linear-gradient(160deg, transparent 12.5%, $container-color 12.5%);
+    font-size: 1.5em;
     @include flexCenter(column);
 }
 
 #player-grid-container {
+    background: $container-color;
+    font-size: 1.5em;
     @include flexCenter(column);
+    border-left: 0.3em solid white;
+    border-right: 0.3em solid white;
+}
+
+.ship-select-btn {
+    width: 100%;
+    padding: 0.3em;
+    margin: 0.4em;
+    font-size: 1.2em;
+    box-shadow: 0em 0em 0.2em 0em #949494;
+    background:#f7ffff;
+    border-radius: 0.5em;
+    border: none;
+}
+
+.ship-select-btn:hover:enabled {
+    background: brown;
+    color: white;
+    transition: 0.4s ease;
 }
 
 #ui-controls {
+    background: linear-gradient(-160deg, transparent 12.5%, $container-color 12.5%);
     @include flexCenter(column);
-    #ship-setup-container {
+    #guess-form {
         @include flexCenter(column);
-        #ship-select-btns {
-            @include flexCenter(column);
+        font-size: 1.5em;
+        font-family: sans-serif;
+        input {
+            font-size: 1.5em;
+            box-shadow: 0em 0em 0.2em 0em #949494;
+            width: 30%;
+            border-style: none;
+            text-align: center;
+            border-radius: 0.3em;
         }
-        .ship-select-btn {
-            width: 100%;
-            padding: 0.3rem;
-            margin: 0.4rem;
-            font-size: 1.2rem;
-            box-shadow: 0rem 0rem 0.2rem 0rem #949494;
-            background:#f7ffff;
-            border-radius: 0.5rem;
-            border: none;
-        }
-        .ship-select-btn:hover {
-            background: brown;
-            color: white;
-            transition: 0.4s ease;
-        }
-        #toggle-ship-direction {
+        button {
+            font-size: 1.5em;
             @extend .ship-select-btn;
-            width: auto;
         }
+        button:hover:enabled {
+            @extend .ship-select-btn:hover;
+        }
+    } 
+}
+
+#ship-setup-container {
+    font-size: 1.5em;
+    text-align: center;
+    @include flexCenter(column);
+    #ship-select-btns {
+        @include flexCenter(column);
+    }
+    #toggle-ship-direction {
+        @extend .ship-select-btn;
+        width: auto;
     }
 }
 
@@ -121,7 +156,7 @@ table {
     td {
         height: calc(20vw/11);
         width: calc(20vw/11);
-        font-size: 0.7rem;
+        font-size: 1em;
     }
     tr:nth-child(odd) td:nth-child(even) {
         background: #f2f2f2;
@@ -184,7 +219,7 @@ table {
     height: 80%;
     border-top-left-radius: 50%;
     border-top-right-radius: 50%;
-    box-shadow: 0 -0.1rem 0.3rem 0.05rem white;
+    box-shadow: 0 -0.1em 0.3em 0.05em white;
 }
 
 //  SHIP TAIL TILE
@@ -196,7 +231,7 @@ table {
     height: 80%;
     border-bottom-left-radius: 50%;
     border-bottom-right-radius: 50%;
-    box-shadow: 0 0.1rem 0.3rem 0.05rem white;
+    box-shadow: 0 0.1em 0.3em 0.05em white;
 }
 
 /*  --------------- HORIZONTAL ------------------- */
@@ -216,7 +251,7 @@ table {
     height: 80%;
     border-top-left-radius: 50%;
     border-bottom-left-radius: 50%;
-    box-shadow: -0.1rem 0 0.3rem 0.05rem white;
+    box-shadow: -0.1em 0 0.3em 0.05em white;
 }
 
 //  SHIP TAIL TILE
@@ -228,7 +263,7 @@ table {
     height: 80%;
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
-    box-shadow: 0.1rem 0 0.3rem 0.05rem white;
+    box-shadow: 0.1em 0 0.3em 0.05em white;
 }
 
 //  ------------------------  WAVES STYLING  ------------------------------------ //
@@ -346,28 +381,28 @@ table {
     width: 40%;
     height: 40%;
     background:OrangeRed;
-    box-shadow: 0px 0px 0.25rem 0.125rem OrangeRed;
+    box-shadow: 0px 0px 0.25em 0.125em OrangeRed;
 }
 
 .orange {
   width: 30%;
   height: 30%;
   background:orange;
-  box-shadow: 0px 0px 0.5rem 0.125rem orange;
+  box-shadow: 0px 0px 0.5em 0.125em orange;
 }
 
 .yellow {
     width: 20%;
     height: 20%;
     background:gold;
-    box-shadow: 0px 0px 0.5rem 0.125rem gold;
+    box-shadow: 0px 0px 0.5em 0.125em gold;
 }
 
 .white {
     width: 10%;
     height: 10%;
     background:white;
-    box-shadow: 0px 0px 0.4rem 0.125rem white;
+    box-shadow: 0px 0px 0.4em 0.125em white;
 }
 
 .ship-sunk {
@@ -382,18 +417,198 @@ table {
     width: 20vw;
     position: absolute;
     background: white;
-    border: 0.5rem solid brown;
+    border: 0.5em solid brown;
     top: 10%;
     left: 40%;
     z-index: 4;
-    border-radius: 2rem;
+    border-radius: 2em;
         h1 {
             color: brown;
         }
     }
 
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 599px) {
+        :root {
+            font-size: 0.6em;
+        }
+        .miss {
+            font-size: 1.2em;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 35% 30% 35%;
+            grid-template-rows: 33% 33% 33%;
+            grid-template-areas: 
+            "player-grid player-grid ui-controls"
+            "player-grid player-grid ui-controls"
+            "ai-grid ai-grid ai-grid";
+            background: white;
+        }
+        
+        #ai-grid-container {
+            grid-area: ai-grid;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            width: 70vw;
+            background: white;
+            table {
+                font-size: 0.3em;
+                justify-self: flex-start;
+                width: 35vw; 
+                height: 35vw;
+            }
+        }
+    
+        #player-grid-container {
+            grid-area: player-grid;
+            background: $container-color;
+            @include flexCenter(column);
+            border-right: 0.7em solid white; 
+            table {
+                width: 50vw;
+                height: 50vw;
+            }
+        }
+        #ui-controls {
+            grid-area: ui-controls;
+            background: $container-color;
+        }
+        #ship-setup-container {
+            font-size: 1em;
+        }
+    }
+    
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 600px) and (max-width: 768px) {
+        :root {
+            font-size: 0.8rem;
+        }
+        .miss {
+            font-size: 1.2em;
+        }
+        .container {
+            display: grid;
+            grid-template-areas: 
+            "player-grid player-grid ui-controls"
+            "ai-grid ai-grid ai-grid";
+            background: white;
+        }
+        
+        #ai-grid-container {
+            grid-area: ai-grid;
+            justify-items: flex-start;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            height: 100%;
+            width: 100%;
+            background: white;
+            table {
+                font-size: 1rem;
+                justify-self: flex-start;
+                width: 35vw; 
+                height: 35vw;
+            }
+        }
+        #player-grid-container {
+            grid-area: player-grid;
+            background: $container-color;
+            align-self: flex-start;
+            border-right: 0.7rem solid white;
+            height: 52vh;
+            table {
+                width:50vw;
+                height: 50vw;
+            }
+        }
+        #ui-controls {
+            height: 52vh;
+            grid-area: ui-controls;
+            background: $container-color;
+        }
+}
 
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+    :root {
+        font-size: 0.8rem;
+    }
+    .miss {
+        font-size: 1.2em;
+    }
+    .container {
+        display: grid;
+        grid-template-areas: 
+        "player-grid player-grid ui-controls"
+        "ai-grid ai-grid ai-grid";
+        background: white;
+    }
+    
+    #ai-grid-container {
+        grid-area: ai-grid;
+        justify-items: flex-start;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        height: 100%;
+        width: 100%;
+        background: white;
+        table {
+            font-size: 1rem;
+            justify-self: flex-start;
+            width: 35vw; 
+            height: 35vw;
+        }
+    }
+    #player-grid-container {
+        grid-area: player-grid;
+        background: $container-color;
+        align-self: flex-start;
+        border-right: 0.7rem solid white;
+        height: 52vh;
+        table {
+            width:40vw;
+            height: 40vw;
+        }
+    }
+    #ui-controls {
+        height: 52vh;
+        grid-area: ui-controls;
+        background: $container-color;
+    }
+    #ship-setup-container {
+        font-size: 1em;
+    }
+}
 
+// /* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    :root {
+        font-size: 0.8rem;
+    }
+    .miss {
+        font-size: 1.3em;
+    #ai-grid {
+        font-size: 0.8rem;
+        width: 20vw;
+        height: 20vw;
+        td {
+            font-size: 0.5rem;
+            }
+        }
+    }
+}
+
+#submit-btn {
+    width: 80% !important;
+}
+
+// /* Extra large devices (large laptops and desktops, 1200px and up) */
+// @media only screen and (min-width: 1200px) {
+
+// }
 
 
 

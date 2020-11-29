@@ -8,15 +8,17 @@ const { playerGrid, getTds } = domObj;
 // const randomTile = getRandomTile(getTds(playerGrid))(randomIndex(getTds(playerGrid)));
 
 const colorTileMiss = tile => {
-
     tile.firstElementChild.children[1].className = 'miss';
     tile.firstElementChild.children[1].textContent = 'X';
-
 }
 
 const colorTileHit = tile => {
     tile.firstElementChild.style.background = 'green';
 };
+
+const colorAItilePositionsSunk = tilePositions => {
+    tilePositions.forEach(tile => tile.firstElementChild.style.background = 'red');
+}
 
 const cannonballAnimation = tile => {
     Array.from(tile.firstElementChild.children).forEach(child => {
@@ -61,7 +63,6 @@ const animateHitPlayerGrid = tile => {
 
 const animateHitAIGrid = tile => {
     cannonballAnimation(tile);
-    console.log('cannonball')
     tile.addEventListener('animationend', e => {
         colorTileHit(tile);
     });
@@ -104,7 +105,8 @@ export {
     animateMiss,
     colorTileHit,
     colorTileMiss,
-    colorShipSunk
+    colorShipSunk,
+    colorAItilePositionsSunk
 };
 
 

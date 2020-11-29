@@ -4,7 +4,7 @@ import { handleTurn, isTd } from './ai-turn-algorithm.js';
 import { ai, user } from './players-objs.js';
 import { addHoleToShip, shipSunk, wonGame, isHit, isMiss, executeAfter1Sec, clearInputAndDisableGuessBtn, removeHitTile, isUnavailable, removeEmptyArrays, clearArray } from './game-utils.js';
 import AIturnsTracker from './ai-turns-tracker.js';
-import { animateHitPlayerGrid, animateHitAIGrid, animateMiss, colorShipSunk } from './hit-animation.js';
+import { animateHitPlayerGrid, animateHitAIGrid, animateMiss, colorShipSunk, colorAItilePositionsSunk } from './hit-animation.js';
 
 const { shipSetupContainer, guessForm, submitBtn, guessInput, getTds, aiGrid, playerGrid } = domObj;
 
@@ -152,6 +152,7 @@ const handleSubmit = async e => {
     //  GET AI & USER TILE POSITIONS
     const aiTilesPositionsArr = ai.getAllTilePositions();
     const AItilesLeft = aiTds.filter(td => playerGuesses.includes(td));
+    console.log(aiTilesPositionsArr)
     const userTilesPositionsArr = user.ships
         .map(ship => ship.tilePositions
         .map(positions => positions))
@@ -163,7 +164,6 @@ const handleSubmit = async e => {
     const playerGuessTile = aiTds.filter(tile => tile.firstElementChild.firstElementChild.textContent === guess)[0];
     if(result && !AItilesLeft.includes(playerGuessTile)){
         clearInputAndDisableGuessBtn(submitBtn)(guessInput);
-        console.log(isHit(guess)(aiTilesPositionsArr))
         if(isHit(guess)(aiTilesPositionsArr)){
             //  STYLE HIT TILE AND REMOVE FROM TILES ARR
             animateHitAIGrid(playerGuessTile);
@@ -172,6 +172,8 @@ const handleSubmit = async e => {
             const shipHit = addHoleToShip(ai.ships)(playerGuessTile);
             if(shipSunk(shipHit)){
                 shipHit.sunk = true;
+                //  COLOR SHIP RED
+                colorAItilePositionsSunk(shipHit.tilePositions);
                 await notification(`${shipHit.name}: Sunk!`)(playerGuessTile)(false);
                 if(wonGame(ai.ships)){
                     await notification(`Game Over!`, `Player Wins!`)(playerGuessTile)(false);

@@ -20,7 +20,7 @@ const resetTdColor = td => td.firstElementChild.lastElementChild.className = '';
 
 // ----------------- GET DOM ELEMENTS FUNCTIONS --------------------------
 
-const { shipBtnsDiv, toggleShipDirectionBtn, playerGrid, guessForm } = domObj;
+const { shipBtnsDiv, toggleShipDirectionBtn, playerGrid, guessForm, shipBtnsContainer } = domObj;
 const playerGridTds = domObj.getTds(playerGrid);
 const getShipBtns = shipBtnsDiv => Array.from(shipBtnsDiv.children);
 
@@ -85,6 +85,8 @@ const shipBtnClickListener = ship => {
             //  IF ALL SHIPS PICKED HIDE SHIP SELECT BUTTONS AND START GAME
             if(shipsPicked(user.ships)){
                 startGame(setUpGame)(guessForm);
+                console.log(shipBtnsContainer)
+                shipBtnsContainer.classList.add('hide');
             };
             enableUnselectedShipBtns(shipBtns)(user.ships);
     };  
