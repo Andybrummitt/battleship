@@ -64,6 +64,7 @@ const shipBtnClickListener = ship => {
     shipState.changeShip(ship);
     let tiles = [];
     let prevTiles = [];
+    console.log(ship)
     //MOUSEOVER CALLBACK THAT GETS TILES AND PAINTS 
     const mouseoverCb = ({target}) => {
             if(!shipHasBeenSelected(ship)){
@@ -75,15 +76,13 @@ const shipBtnClickListener = ship => {
         };
         //SHIP POSITION SELECT CALLBACK THAT MUTATES SHIP STATE AND CALLS UNSELECTS BUTTONS CALLBACK
         const changePositionOnClick = ({target}) => {
-            console.log(target);
-            if(shipSet(target)){
-                enableUnselectedShipBtns(shipBtns)(user.ships);
+            //  IF USER CLICKS ON SHIP TILES THAT ARE TAKEN, RETURN
+            if(!tiles){
                 return;
             }
             ship.tilePositions = tiles;
-            // tiles.forEach(tile => setTdGrey(tile));
             setShipStyles(tiles)(ship)(false);
-            //if all picked hide btns and start game
+            //  IF ALL SHIPS PICKED HIDE SHIP SELECT BUTTONS AND START GAME
             if(shipsPicked(user.ships)){
                 startGame(setUpGame)(guessForm);
             };

@@ -19,7 +19,6 @@ const colorTileHit = tile => {
 };
 
 const cannonballAnimation = tile => {
-    console.log('cannonball animation')
     Array.from(tile.firstElementChild.children).forEach(child => {
         if(!child.classList.contains('text-div') && !child.classList.contains('ship-set')){
             child.className = '';
@@ -27,11 +26,11 @@ const cannonballAnimation = tile => {
     });
 
     tile.firstElementChild.children[4].classList.add('cannonball');
-    console.log(tile.firstElementChild.classList)
-    console.log(tile.firstElementChild.firstElementChild.classList)
-    console.log(tile.firstElementChild.children[1].classList)
-    console.log(tile.firstElementChild.children[2].classList)
-    console.log(tile.firstElementChild.lastElementChild.classList)
+    // console.log(tile.firstElementChild.classList)
+    // console.log(tile.firstElementChild.firstElementChild.classList)
+    // console.log(tile.firstElementChild.children[1].classList)
+    // console.log(tile.firstElementChild.children[2].classList)
+    // console.log(tile.firstElementChild.lastElementChild.classList)
 };
 
 const fireAnimation = tile => {
@@ -50,7 +49,7 @@ const fireAnimation = tile => {
     div3.classList.add('orange');
     div4.classList.add('yellow');
     div5.classList.add('white');
-    console.log(tileDivs)
+    // console.log(tileDivs)
 };
 
 const animateHitPlayerGrid = tile => {
@@ -62,6 +61,7 @@ const animateHitPlayerGrid = tile => {
 
 const animateHitAIGrid = tile => {
     cannonballAnimation(tile);
+    console.log('cannonball')
     tile.addEventListener('animationend', e => {
         colorTileHit(tile);
     });
@@ -74,7 +74,6 @@ const animateMiss = tile => {
         tile.firstElementChild.lastElementChild.className = '';
     });  
 };
-
 
 const playergridfirstRow = document.querySelector('#player-grid').lastElementChild.children[0];
 

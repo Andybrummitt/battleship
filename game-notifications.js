@@ -14,10 +14,11 @@ const removeClassFromElem = elem => className => {
     };
 };
 
-const fadeBackground = addClassToElem(container)('fade');
-const unfadeBackground = removeClassFromElem(container)('fade');
-const showNotificationBox = removeClassFromElem(notifBox)('hide');
-const hideNotificationBox = addClassToElem(notifBox)('hide');
+// const fadeBackground = addClassToElem(container)('fade');
+// const unfadeBackground = removeClassFromElem(container)('fade');
+// const showNotificationBox = removeClassFromElem(notifBox)('hide');
+// const hideNotificationBox = addClassToElem(notifBox)('hide');
+
 const changeNotifBody = (title, text = "") => {
     console.log(title)
     notifTitle.textContent = title;
@@ -25,23 +26,35 @@ const changeNotifBody = (title, text = "") => {
 };
 
 
-const notification = async changeNotifBodyCb => {
+const notification = argsForCb => tile => async isAnimated => {
+    //  ISANIMATED = HITS OR MISSES WHERE CANNONBALL ANIMATION HAPPENS 
+    changeNotifBody(argsForCb)
+    if(isAnimated){
+        removeClassFromElem(notifBox)('hide');
+            await new Promise(resolve => {
+                tile.addEventListener('animationend', async e => {
+                    await addClassToElem(notifBox)('hide');
+                    resolve();
+                    //  NEED TO FIX BUG WITH SAME TILES OR THIS WILL NEVER RESOLVE
+                });     
+            })
+    }
+    else {
+        // SLEEP 1 SECOND
+        removeClassFromElem(notifBox)('hide');
+        await new Promise(resolve => setTimeout(() => {
+            resolve();
+        }, 1000));
+        addClassToElem(notifBox)('hide');
+        return;
+    }
     
-    addClassToElem(container)('fade');
-    removeClassFromElem(notifBox)('hide');
-    
-    //SLEEP 2 SECONDS
+    // SLEEP 2 SECONDS
     // await new Promise(resolve => setTimeout(() => { 
     //     resolve();
     // }, 2000));
     
-    removeClassFromElem(container)('fade');
-    addClassToElem(notifBox)('hide');
-
-    //SLEEP 1 SECOND
-    // await new Promise(resolve => setTimeout(() => {
-    //     resolve();
-    // }, 1000));
+    // removeClassFromElem(container)('fade');   
 };
 
 export { notification, changeNotifBody, addClassToElem, removeClassFromElem };

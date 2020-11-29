@@ -21,10 +21,6 @@ const continueHitStreakGuess = tile => tilesLeft => arr => {
     if(inMisses(nextTileY) && inMisses(prevTileY)){
         horizontal = true;
     };     
-    console.log(prevTileY)
-    console.log(prevTileX)
-    console.log(nextTileY)
-    console.log(nextTileX)
     if(horizontal){
         if(isTd(prevTileX) && tilesLeft.includes(prevTileX)){
             guess = prevTileX;
@@ -66,10 +62,6 @@ const guessAfterHit = tilesLeft => tile => {
             let prevTileY;
             // tile.parentElement.nextElementSibling ? prevTileY = tile.parentElement.previousElementSibling.children[childPosition] : prevTileY = null;
             tile.parentElement.previousElementSibling ? prevTileY = tile.parentElement.previousElementSibling.children[childPosition] : prevTileY = null;
-            console.log(nextTileX);
-            console.log(prevTileX)    
-            console.log(nextTileY)
-            console.log(prevTileY)
             //IF NO HIT STREAK BUT 1ST HIT
             // if(inHits(nextTileX) || inHits(prevTileX)){
                 //stay horizontal

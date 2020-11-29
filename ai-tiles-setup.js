@@ -60,5 +60,6 @@ ai.ships.forEach(ship => {
         };
     };
     checkRandomTile(tile);
+    console.log(ai.ships)
 });
 

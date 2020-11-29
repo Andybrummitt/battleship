@@ -11,12 +11,27 @@ body {
           box-sizing: border-box;
 }
 
+button {
+  cursor: pointer;
+}
+
 .hide {
   display: none;
 }
 
 .fade {
   opacity: 0.3;
+}
+
+#grid-container-div {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 10vh 90vh;
+      grid-template-rows: 10vh 90vh;
+}
+
+header {
+  grid-area: 'header';
 }
 
 #game-title {
@@ -30,8 +45,6 @@ body {
   display: grid;
   -ms-grid-columns: 1fr 2fr 1fr;
       grid-template-columns: 1fr 2fr 1fr;
-  height: 87vh;
-  width: 100vw;
   background: #f2f2f2;
 }
 
@@ -149,15 +162,15 @@ table td {
 }
 
 #player-grid {
-  width: 40vw;
-  height: 40vw;
+  width: 35vw;
+  height: 35vw;
 }
 
 #player-grid td {
   background: -webkit-gradient(linear, left top, left bottom, from(#3a78c9), to(#267aad));
   background: linear-gradient(#3a78c9, #267aad);
-  width: calc(40vw/11);
-  height: calc(40vw/11);
+  width: calc(35vw/11);
+  height: calc(35vw/11);
 }
 
 #ai-grid {
@@ -398,8 +411,8 @@ table td {
 .cannonball {
   background: #1c1c1c;
   border-radius: 50%;
-  -webkit-animation: drop 2s ease;
-          animation: drop 2s ease;
+  -webkit-animation: drop 2s ease-in;
+          animation: drop 2s ease-in;
   z-index: 1;
   position: absolute;
 }
@@ -473,7 +486,21 @@ table td {
   background: red;
 }
 
-.ship-hover {
-  background: red;
+/* ---------------------    NOTIFICATION    ---------------------------- */
+#notification-box {
+  text-align: center;
+  height: 10vh;
+  width: 20vw;
+  position: absolute;
+  background: white;
+  border: 0.5rem solid brown;
+  top: 10%;
+  left: 40%;
+  z-index: 4;
+  border-radius: 2rem;
+}
+
+#notification-box h1 {
+  color: brown;
 }
 /*# sourceMappingURL=style.css.map */

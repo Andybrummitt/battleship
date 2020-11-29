@@ -7,10 +7,14 @@ const { playerGrid, getTds } = domObj;
 export const playerGridTds = getTds(playerGrid);
 
 //  GETTING ALL AI TILES POSITIONS THAT WERE SELECTED
-const aiTilesPositionsArr = ai.ships
-    .map(ship => ship.tilePositions
-    .map(positions => positions))
-    .flat();
+// const aiTilesPositionsArr = ai.ships
+//     .map(ship => ship.tilePositions
+//     .map(positions => positions))
+//     .flat();
+
+
+    // const aiTilesPositionsArr = ai.getAllTilePositions()
+    console.log(ai.ships.map(ship => ship.tilePositions))
 
 const randomIndex = arr => Math.floor(Math.random() * arr.length);
 
@@ -50,4 +54,4 @@ export const handleTurn = () => {
     return guess;
 };
 
-export { inHits, inMisses, aiTilesPositionsArr, randomIndex };
+export { inHits, inMisses, randomIndex };

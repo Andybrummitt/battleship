@@ -13,7 +13,7 @@ const user = {
 const ai = {
     ships: shipsAICopy,
     getAllTilePositions: () => {
-        return user.ships.map(ship => ship.tilePositions).flat()
+        return ai.ships.map(ship => ship.tilePositions).flat()
     }
 };
 

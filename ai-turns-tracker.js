@@ -1,5 +1,3 @@
-const test = Array.from(document.querySelectorAll('.test'));
-
 const AIturnsTracker = {
     hits: [],
     misses: [],

@@ -112,6 +112,7 @@ setInterval(() => {
     const prevTurns = turns.hits.concat(turns.misses);
     const tilesLeft = [...playerGridTds].filter(td => !prevTurns.includes(td) && !userTiles.includes(td));
     let randomTilesArr = randomTiles(tilesLeft);
+    console.log(randomTilesArr);
     addWaveAnimation(randomTilesArr);
     randomTilesArr = randomTiles(tilesLeft);
 }, 3000);

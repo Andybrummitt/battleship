@@ -7,7 +7,7 @@ import { ai, user } from './players-objs.js';
 import domObj from './dom-obj.js';
 import shipState from './ship-state.js';
 import { aiGridTds } from './ai-tiles-setup.js';
-import { aiTilesPositionsArr } from './ai-turn-algorithm.js';
+import './ai-turn-algorithm.js';
 import { addClassToElem } from './game-notifications.js';
 import { setUpGame } from './play-game.js';
 import './wave-animation.js';
