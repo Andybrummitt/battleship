@@ -14,15 +14,8 @@ const removeClassFromElem = elem => className => {
     };
 };
 
-// const fadeBackground = addClassToElem(container)('fade');
-// const unfadeBackground = removeClassFromElem(container)('fade');
-// const showNotificationBox = removeClassFromElem(notifBox)('hide');
-// const hideNotificationBox = addClassToElem(notifBox)('hide');
-
-const changeNotifBody = (title, text = "") => {
-    console.log(title)
+const changeNotifBody = (title) => {
     notifTitle.textContent = title;
-    notifText.textContent = text;
 };
 
 

@@ -17,4 +17,4 @@ const ai = {
     }
 };
 
-export { ai, user };
+export { ai, user, shipsUserCopy };

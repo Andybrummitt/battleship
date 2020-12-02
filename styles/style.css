@@ -1,45 +1,217 @@
+/*  --------------------    FONT IMPORTS ---------------------- */
 @import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Text:wght@400;500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Teko&display=swap");
+/*  -----------------------    MIXINS AND VARIABLES ----------------------- */
+/*  ----------------------  FILE IMPORTS ---------------------- */
 :root {
-  font-family: 'Big Shoulders Stencil Text', cursive;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-button {
-  cursor: pointer;
-}
-
-.hide {
-  display: none !important;
-}
-
-.fade {
-  opacity: 0.3;
-}
-
-#grid-container-div {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-rows: 10vh 90vh;
-      grid-template-rows: 10vh 90vh;
+  font-family: "Big Shoulders Stencil Text", cursive;
 }
 
 header {
   grid-area: 'header';
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#vector-credit {
+  position: absolute;
+  top: 1%;
+  left: 1%;
 }
 
 #game-title {
   text-align: center;
-  font-size: 3em;
+  font-size: 5em;
+  opacity: 0.3;
+  -webkit-margin-before: 0;
+          margin-block-start: 0;
+  -webkit-margin-after: 0;
+          margin-block-end: 0;
+  z-index: 2;
+  color: brown;
+  text-shadow: 0 2px 2px white;
 }
 
-/* -------------------- TABLE STYLING ------------------------ */
+#behind-title-img {
+  background: #1c1c1c;
+  border-radius: 50%;
+  width: 7rem;
+  height: 7rem;
+  position: absolute;
+  -webkit-box-shadow: 0 0 30px 30px lightgray;
+          box-shadow: 0 0 30px 30px lightgray;
+}
+
+.ship-img {
+  height: 20em;
+  width: 20em;
+  position: absolute;
+}
+
+/*  ---------------------    LEFT SIDE SHIP ANIMATION --------------------------    */
+#ship-1 {
+  left: 2%;
+  top: 2%;
+  -webkit-transform: rotate(10deg);
+          transform: rotate(10deg);
+  z-index: 1;
+}
+
+#header-cannonball-1-container {
+  -webkit-animation: fire-left-xaxis1 1.2s ease-in;
+          animation: fire-left-xaxis1 1.2s ease-in;
+  position: absolute;
+  left: 14%;
+  top: 10.5%;
+}
+
+@-webkit-keyframes fire-left-xaxis1 {
+  from {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+  to {
+    -webkit-transform: translateX(30vw);
+            transform: translateX(30vw);
+  }
+}
+
+@keyframes fire-left-xaxis1 {
+  from {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+  to {
+    -webkit-transform: translateX(30vw);
+            transform: translateX(30vw);
+  }
+}
+
+#header-cannonball-1 {
+  background: #1c1c1c;
+  border-radius: 50%;
+  -webkit-animation: fire-left-yaxis1 1.2s ease-out;
+          animation: fire-left-yaxis1 1.2s ease-out;
+}
+
+@-webkit-keyframes fire-left-yaxis1 {
+  from {
+    width: 1px;
+    height: 1px;
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  to {
+    width: 1vw;
+    height: 1vw;
+    -webkit-transform: translateY(-4vw);
+            transform: translateY(-4vw);
+  }
+}
+
+@keyframes fire-left-yaxis1 {
+  from {
+    width: 1px;
+    height: 1px;
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  to {
+    width: 1vw;
+    height: 1vw;
+    -webkit-transform: translateY(-4vw);
+            transform: translateY(-4vw);
+  }
+}
+
+/*  ---------------------    RIGHT SIDE SHIP ANIMATION   --------------------------    */
+#ship-2 {
+  right: 2%;
+  top: 2%;
+  -webkit-transform: scaleX(-1) rotate(10deg);
+          transform: scaleX(-1) rotate(10deg);
+  z-index: 1;
+}
+
+#header-cannonball-2-container {
+  -webkit-animation: fire-left-xaxis2 1.2s ease-in;
+          animation: fire-left-xaxis2 1.2s ease-in;
+  position: absolute;
+  right: 14%;
+  top: 10.5%;
+}
+
+@-webkit-keyframes fire-left-xaxis2 {
+  from {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+  to {
+    -webkit-transform: translateX(-30vw);
+            transform: translateX(-30vw);
+  }
+}
+
+@keyframes fire-left-xaxis2 {
+  from {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+  to {
+    -webkit-transform: translateX(-30vw);
+            transform: translateX(-30vw);
+  }
+}
+
+#header-cannonball-2 {
+  background: #1c1c1c;
+  border-radius: 50%;
+  -webkit-animation: fire-left-yaxis2 1.2s ease-out;
+          animation: fire-left-yaxis2 1.2s ease-out;
+}
+
+@-webkit-keyframes fire-left-yaxis2 {
+  from {
+    width: 1px;
+    height: 1px;
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  to {
+    width: 1vw;
+    height: 1vw;
+    -webkit-transform: translateY(-4vw);
+            transform: translateY(-4vw);
+  }
+}
+
+@keyframes fire-left-yaxis2 {
+  from {
+    width: 1px;
+    height: 1px;
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  to {
+    width: 1vw;
+    height: 1vw;
+    -webkit-transform: translateY(-4vw);
+            transform: translateY(-4vw);
+  }
+}
+
 .container {
   display: -ms-grid;
   display: grid;
@@ -108,19 +280,7 @@ header {
 
 #ui-controls {
   background: linear-gradient(-160deg, transparent 12.5%, #f2f2f2 12.5%);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  position: relative;
 }
 
 #ui-controls #guess-form {
@@ -139,6 +299,10 @@ header {
           justify-content: center;
   font-size: 1.5em;
   font-family: sans-serif;
+  position: absolute;
+  top: 30%;
+  width: 100%;
+  text-align: center;
 }
 
 #ui-controls #guess-form input {
@@ -153,9 +317,13 @@ header {
 
 #ui-controls #guess-form button {
   font-size: 1.5em;
+  width: 80%;
 }
 
 #ship-setup-container {
+  width: 100%;
+  position: absolute;
+  top: 20%;
   font-size: 1.5em;
   text-align: center;
   display: -webkit-box;
@@ -218,12 +386,17 @@ table td {
   background: white;
   width: 20vw;
   height: 20vw;
+  font-size: 0.6rem;
+}
+
+#ai-grid th {
+  font-size: 1.5em;
 }
 
 #ai-grid td {
   height: calc(20vw/11);
   width: calc(20vw/11);
-  font-size: 1em;
+  font-size: 1.5em;
 }
 
 #ai-grid tr:nth-child(odd) td:nth-child(even) {
@@ -257,7 +430,6 @@ table td {
           align-items: center;
 }
 
-/*  --------------------------------- SHIP STYLING -------------------------------------    */
 .active {
   opacity: 0.7;
   -webkit-box-shadow: 0px 0px !important;
@@ -335,6 +507,45 @@ table td {
   border-bottom-right-radius: 50%;
   -webkit-box-shadow: 0.1em 0 0.3em 0.05em white;
           box-shadow: 0.1em 0 0.3em 0.05em white;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+}
+
+.hide {
+  display: none !important;
+}
+
+.fade {
+  opacity: 0.3;
+}
+
+#grid-container-div {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 13vh 87vh;
+      grid-template-rows: 13vh 87vh;
+}
+
+.hover-ship-div {
+  text-align: center;
+  border: 3px solid black;
+  border-radius: 0.5em;
+  background: white;
+  opacity: 0.75;
+  position: absolute;
+  z-index: 4;
+  list-style-type: none;
+  padding: 0.5em;
+  font-family: "Teko", sans-serif;
 }
 
 .wave-1-phase1 {
@@ -443,7 +654,7 @@ table td {
 
 /*  ----------------------  MISS STYLING ------------------- */
 .miss {
-  font-size: 2em;
+  font-size: 1.8em;
   color: red;
   font-family: 'Questrial', sans-serif;
 }
@@ -529,29 +740,61 @@ table td {
 
 /* ---------------------    NOTIFICATION    ---------------------------- */
 #notification-box {
-  text-align: center;
-  height: 10vh;
-  width: 20vw;
-  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0 1em;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
   background: white;
+  text-align: center;
   border: 0.5em solid brown;
-  top: 10%;
-  left: 40%;
+  left: -50%;
   z-index: 4;
   border-radius: 2em;
 }
 
 #notification-box h1 {
-  color: brown;
+  font-size: 3em;
+  font-family: "Teko", sans-serif;
+  text-transform: uppercase;
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 599px) {
+#notification-container {
+  position: absolute;
+  left: 50%;
+  width: 25vw;
+  top: 10%;
+}
+
+/* Extra small devices (phones, up to 449px) */
+@media only screen and (max-width: 449px) {
   :root {
-    font-size: 0.6em;
+    font-size: 0.5em;
+  }
+  #notification-container {
+    position: absolute;
+    width: 40vw;
+  }
+  #notification-container h1 {
+    font-size: 2em;
   }
   .miss {
     font-size: 1.2em;
+  }
+  #submit-btn {
+    font-size: 1em !important;
   }
   .container {
     display: -ms-grid;
@@ -614,17 +857,156 @@ table td {
     background: #f2f2f2;
   }
   #ship-setup-container {
-    font-size: 1em;
+    font-size: 1.2em;
+  }
+  .ship-img {
+    height: 10em;
+    width: 10em;
+    position: absolute;
+  }
+  #ship-1 {
+    left: 2%;
+    top: 5%;
+    -webkit-transform: rotate(10deg);
+            transform: rotate(10deg);
+  }
+  #ship-2 {
+    right: 2%;
+    top: 5%;
+    -webkit-transform: scaleX(-1) rotate(10deg);
+            transform: scaleX(-1) rotate(10deg);
+  }
+  #header-cannonball-1 {
+    display: none;
+  }
+  #header-cannonball-2 {
+    display: none;
   }
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
+/* Small devices (phones, 450px to 599px) */
+@media only screen and (min-width: 450px) and (max-width: 599px) {
+  :root {
+    font-size: 0.6em;
+  }
+  #notification-container {
+    position: absolute;
+    width: 40vw;
+  }
+  #notification-container h1 {
+    font-size: 2em;
+  }
+  .miss {
+    font-size: 1.2em;
+  }
+  #submit-btn {
+    font-size: 1em !important;
+  }
+  .container {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 35% 30% 35%;
+        grid-template-columns: 35% 30% 35%;
+    -ms-grid-rows: 33% 33% 33%;
+        grid-template-rows: 33% 33% 33%;
+        grid-template-areas: "player-grid player-grid ui-controls" "player-grid player-grid ui-controls" "ai-grid ai-grid ai-grid";
+    background: white;
+  }
+  #ai-grid-container {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+    grid-area: ai-grid;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 70vw;
+    background: white;
+  }
+  #ai-grid-container table {
+    font-size: 0.3em;
+    justify-self: flex-start;
+    width: 28vw;
+    height: 28vw;
+  }
+  #player-grid-container {
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 2;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: player-grid;
+    background: #f2f2f2;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    border-right: 0.7em solid white;
+  }
+  #player-grid-container table {
+    width: 50vw;
+    height: 50vw;
+  }
+  #ui-controls {
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 2;
+    -ms-grid-column: 3;
+    grid-area: ui-controls;
+    background: #f2f2f2;
+  }
+  #ship-setup-container {
+    font-size: 1.2em;
+  }
+  .ship-img {
+    height: 15em;
+    width: 15em;
+    position: absolute;
+  }
+  #ship-1 {
+    left: 2%;
+    top: 5%;
+    -webkit-transform: rotate(10deg);
+            transform: rotate(10deg);
+  }
+  #ship-2 {
+    right: 2%;
+    top: 5%;
+    -webkit-transform: scaleX(-1) rotate(10deg);
+            transform: scaleX(-1) rotate(10deg);
+  }
+  #header-cannonball-1 {
+    display: none;
+  }
+  #header-cannonball-2 {
+    display: none;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px to 768px) */
 @media only screen and (min-width: 600px) and (max-width: 768px) {
   :root {
     font-size: 0.8rem;
   }
+  #notification-container {
+    position: absolute;
+    width: 40vw;
+  }
+  #notification-container h1 {
+    font-size: 2em;
+  }
   .miss {
     font-size: 1.2em;
+  }
+  #submit-btn {
+    font-size: 1em !important;
   }
   .container {
     display: -ms-grid;
@@ -673,12 +1055,33 @@ table td {
     grid-area: ui-controls;
     background: #f2f2f2;
   }
+  #ship-setup-container {
+    font-size: 1em;
+  }
+  .ship-img {
+    height: 10em;
+    width: 10em;
+    position: absolute;
+  }
+  #header-cannonball-1 {
+    display: none;
+  }
+  #header-cannonball-2 {
+    display: none;
+  }
 }
 
-/* Medium devices (landscape tablets, 768px and up) */
+/* Medium devices (landscape tablets, 769px to 992px) */
 @media only screen and (min-width: 769px) and (max-width: 992px) {
   :root {
     font-size: 0.8rem;
+  }
+  #notification-container {
+    position: absolute;
+    width: 40vw;
+  }
+  #notification-container h1 {
+    font-size: 2em;
   }
   .miss {
     font-size: 1.2em;
@@ -694,7 +1097,6 @@ table td {
     -ms-grid-column: 1;
     -ms-grid-column-span: 3;
     grid-area: ai-grid;
-    justify-items: flex-start;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -733,11 +1135,26 @@ table td {
   #ship-setup-container {
     font-size: 1em;
   }
+  .ship-img {
+    height: 10em;
+    width: 10em;
+    position: absolute;
+  }
+  #ship-1, #ship-2 {
+    top: 5%;
+  }
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 993px) and (max-width: 1199px) {
   :root {
     font-size: 0.8rem;
+  }
+  #notification-container {
+    position: absolute;
+    width: 40vw;
+  }
+  #notification-container h1 {
+    font-size: 3em;
   }
   .miss {
     font-size: 1.3em;
@@ -750,9 +1167,65 @@ table td {
   .miss #ai-grid td {
     font-size: 0.5rem;
   }
-}
-
-#submit-btn {
-  width: 80% !important;
+  .container {
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: "player-grid player-grid ui-controls" "ai-grid ai-grid ai-grid";
+    background: white;
+  }
+  #ai-grid-container {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+    grid-area: ai-grid;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    background: white;
+  }
+  #ai-grid-container table {
+    font-size: 1rem;
+    justify-self: flex-start;
+    width: 35vw;
+    height: 35vw;
+  }
+  #player-grid-container {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: player-grid;
+    background: #f2f2f2;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+    border-right: 0.7rem solid white;
+    height: 52vh;
+  }
+  #player-grid-container table {
+    width: 40vw;
+    height: 40vw;
+  }
+  #ui-controls {
+    height: 52vh;
+    -ms-grid-row: 1;
+    -ms-grid-column: 3;
+    grid-area: ui-controls;
+    background: #f2f2f2;
+  }
+  #ship-setup-container {
+    font-size: 1em;
+  }
+  .ship-img {
+    height: 15em;
+    width: 15em;
+    position: absolute;
+  }
+  #ship-1, #ship-2 {
+    top: 6%;
+  }
+  #submit-btn {
+    width: 80% !important;
+  }
 }
 /*# sourceMappingURL=style.css.map */

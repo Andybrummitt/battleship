@@ -1,0 +1,641 @@
+/*  --------------------    FONT IMPORTS ---------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Text:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
+
+/*  -----------------------    MIXINS AND VARIABLES ----------------------- */
+
+@mixin flexCenter($direction){
+    display: flex;
+    flex-direction: $direction;
+    align-items: center;
+    justify-content: center;
+}
+
+$sea-color: radial-gradient(#3a78c9 30%, #336bb5);
+$cannonball-color: #1c1c1c;
+$ship-main-color: #595959;
+$ship-gradient-color:#828282;
+$container-color: #f2f2f2;
+$main-font: 'Big Shoulders Stencil Text', cursive;
+$notification-font: 'Teko', sans-serif;
+
+/*  ----------------------  FILE IMPORTS ---------------------- */
+:root {
+    font-family: $main-font;
+}
+
+@import "./header";
+@import "./main-container";
+@import "./ship-styling";
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hide {
+    display: none !important;
+}
+
+.fade {
+    opacity: 0.3;
+}
+
+#grid-container-div {
+    display: grid;
+    grid-template-rows: 13vh 87vh;
+}
+
+.hover-ship-div {
+    text-align: center;
+    border: 3px solid black;
+    border-radius: 0.5em;
+    background: white;
+    opacity: 0.75;
+    position: absolute;
+    z-index: 4;
+    list-style-type: none;
+    padding: 0.5em;
+    font-family: $notification-font;
+}
+
+//  ------------------------  WAVES STYLING  ------------------------------------ //
+
+@mixin wave {
+    background: lightgray;
+    height: 5%;
+    width: 10%;
+    position: absolute;
+    z-index: 0;
+}
+
+.wave-1-phase1 {
+    @include wave;
+    transform: rotate(15deg);
+    top: 75%;
+    right: 60%;
+    border-bottom-left-radius: 50%; 
+}
+
+.wave-2-phase1 {
+    @include wave;
+    transform: rotate(-15deg);
+    top: 75%;
+    right: 70%;
+    border-bottom-right-radius: 50%;
+}
+
+.wave-3-phase1 {
+    @include wave;
+    transform: rotate(-15deg);
+    bottom: 0%;
+    left: 5%;
+    border-bottom-right-radius: 50%;
+}
+.wave-4-phase1 {
+    @include wave;
+    transform: rotate(15deg);
+    bottom: 0%;
+    left: 15%;
+    border-bottom-left-radius: 50%;
+}
+
+.wave-1-phase2 {
+    @include wave;
+    transform: rotate(15deg);
+    top: 0%;
+    right: 5%;
+    border-bottom-left-radius: 50%; 
+}
+
+.wave-2-phase2 {
+    @include wave;
+    transform: rotate(-15deg);
+    top: 0%;
+    right: 15%;
+    border-bottom-right-radius: 50%;
+}
+
+.wave-3-phase2 {
+    @include wave;
+    transform: rotate(-15deg);
+    bottom: 75%;
+    left: 60%;
+    border-bottom-right-radius: 50%;
+}
+.wave-4-phase2 {
+    @include wave;
+    transform: rotate(15deg);
+    bottom: 75%;
+    left: 70%;
+    border-bottom-left-radius: 50%;
+}
+
+/*  ----------------------  MISS STYLING ------------------- */@at-root
+
+.miss {
+    font-size: 1.8em;
+    color: red;
+    font-family: 'Questrial', sans-serif;    
+}
+
+/*  --------------------- HIT ANIMATION -------------- */
+
+.cannonball {
+    background: $cannonball-color;
+    border-radius: 50%;
+    animation: drop 2s ease-in;
+    z-index: 1;
+    position: absolute;
+}
+
+@keyframes drop {
+    from {
+        height: 50%;
+        width: 50%;
+    }
+    to {
+        height: 10%;
+        width: 10%;
+    }
+}
+
+.flame {
+    bottom: 20%;
+    position:absolute;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-top-left-radius: 50%;
+    transform:rotate(-45deg) scale(1.5,1.5);
+    z-index: 1;
+}
+  
+.red {
+    width: 40%;
+    height: 40%;
+    background:OrangeRed;
+    box-shadow: 0px 0px 0.25em 0.125em OrangeRed;
+}
+
+.orange {
+  width: 30%;
+  height: 30%;
+  background:orange;
+  box-shadow: 0px 0px 0.5em 0.125em orange;
+}
+
+.yellow {
+    width: 20%;
+    height: 20%;
+    background:gold;
+    box-shadow: 0px 0px 0.5em 0.125em gold;
+}
+
+.white {
+    width: 10%;
+    height: 10%;
+    background:white;
+    box-shadow: 0px 0px 0.4em 0.125em white;
+}
+
+.ship-sunk {
+    background: red;
+}
+
+/* ---------------------    NOTIFICATION    ---------------------------- */
+
+#notification-box {
+    @include flexCenter(column);
+    padding: 0 1em;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    background: white;
+    text-align: center;
+    border: 0.5em solid brown;
+    left: -50%;
+    z-index: 4;
+    border-radius: 2em;
+        h1 {
+            font-size: 3em;
+            font-family: $notification-font;
+            text-transform: uppercase;
+        }
+    }
+
+    #notification-container {
+        position: absolute;
+        left: 50%;
+        width: 25vw;
+        top: 10%;
+    }
+
+    /* Extra small devices (phones, up to 449px) */
+@media only screen and (max-width: 449px){
+    :root {
+        font-size: 0.5em;
+    }
+    #notification-container {
+        position: absolute;
+        width: 40vw;
+        h1 {
+            font-size: 2em;
+        }
+    }
+    .miss {
+        font-size: 1.2em;
+    }
+    #submit-btn {
+            font-size: 1em !important;
+        }
+    .container {
+        display: grid;
+        grid-template-columns: 35% 30% 35%;
+        grid-template-rows: 33% 33% 33%;
+        grid-template-areas: 
+        "player-grid player-grid ui-controls"
+        "player-grid player-grid ui-controls"
+        "ai-grid ai-grid ai-grid";
+        background: white;
+    }
+    
+    #ai-grid-container {
+        grid-area: ai-grid;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        width: 70vw;
+        background: white;
+        table {
+            font-size: 0.3em;
+            justify-self: flex-start;
+            width: 35vw; 
+            height: 35vw;
+        }
+    }
+
+    #player-grid-container {
+        grid-area: player-grid;
+        background: $container-color;
+        @include flexCenter(column);
+        border-right: 0.7em solid white; 
+        table {
+            width: 50vw;
+            height: 50vw;
+        }
+    }
+    #ui-controls {
+        grid-area: ui-controls;
+        background: $container-color;
+    }
+    #ship-setup-container {
+        font-size: 1.2em;
+    }
+    .ship-img {
+        height: 10em;
+        width: 10em;
+        position: absolute;
+    }
+    #ship-1 {
+        left: 2%;
+        top: 5%;
+        transform: rotate(10deg);
+    }
+    #ship-2 {
+        right: 2%;
+        top: 5%;
+        transform: scaleX(-1) rotate(10deg);
+    }
+    #header-cannonball-1 {
+        display: none;
+    }
+    #header-cannonball-2 {
+        display: none;
+    }
+}
+
+/* Small devices (phones, 450px to 599px) */
+@media only screen and (min-width: 450px) and (max-width: 599px) {
+    :root {
+        font-size: 0.6em;
+    }
+    #notification-container {
+        position: absolute;
+        width: 40vw;
+        h1 {
+            font-size: 2em;
+        }
+    }
+    .miss {
+        font-size: 1.2em;
+    }
+    #submit-btn {
+            font-size: 1em !important;
+        }
+    .container {
+        display: grid;
+        grid-template-columns: 35% 30% 35%;
+        grid-template-rows: 33% 33% 33%;
+        grid-template-areas: 
+        "player-grid player-grid ui-controls"
+        "player-grid player-grid ui-controls"
+        "ai-grid ai-grid ai-grid";
+        background: white;
+    }
+    
+    #ai-grid-container {
+        grid-area: ai-grid;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        width: 70vw;
+        background: white;
+        table {
+            font-size: 0.3em;
+            justify-self: flex-start;
+            width: 28vw; 
+            height: 28vw;
+        }
+    }
+
+    #player-grid-container {
+        grid-area: player-grid;
+        background: $container-color;
+        @include flexCenter(column);
+        border-right: 0.7em solid white; 
+        table {
+            width: 50vw;
+            height: 50vw;
+        }
+    }
+    #ui-controls {
+        grid-area: ui-controls;
+        background: $container-color;
+    }
+    #ship-setup-container {
+        font-size: 1.2em;
+    }
+    .ship-img {
+        height: 15em;
+        width: 15em;
+        position: absolute;
+    }
+    #ship-1 {
+        left: 2%;
+        top: 5%;
+        transform: rotate(10deg);
+    }
+    #ship-2 {
+        right: 2%;
+        top: 5%;
+        transform: scaleX(-1) rotate(10deg);
+    }
+    #header-cannonball-1 {
+        display: none;
+    }
+    #header-cannonball-2 {
+        display: none;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px to 768px) */
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+    :root {
+        font-size: 0.8rem;
+    }
+    #notification-container {
+        position: absolute;
+        width: 40vw;
+        h1 {
+            font-size: 2em;
+        }
+    }
+    .miss {
+        font-size: 1.2em;
+    }
+    #submit-btn {
+            font-size: 1em !important;
+        }
+    .container {
+        display: grid;
+        grid-template-areas: 
+        "player-grid player-grid ui-controls"
+        "ai-grid ai-grid ai-grid";
+        background: white;
+    }
+    
+    #ai-grid-container {
+        grid-area: ai-grid;
+        justify-items: flex-start;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        height: 100%;
+        width: 100%;
+        background: white;
+        table {
+            font-size: 1rem;
+            justify-self: flex-start;
+            width: 35vw; 
+            height: 35vw;
+        }
+    }
+    #player-grid-container {
+        grid-area: player-grid;
+        background: $container-color;
+        align-self: flex-start;
+        border-right: 0.7rem solid white;
+        height: 52vh;
+        table {
+            width:50vw;
+            height: 50vw;
+        }
+    }
+    #ui-controls {
+        height: 52vh;
+        grid-area: ui-controls;
+        background: $container-color;
+    }
+
+    #ship-setup-container {
+        font-size: 1em;
+    }
+    .ship-img {
+        height: 10em;
+        width: 10em;
+        position: absolute;
+    }
+    #header-cannonball-1 {
+        display: none;
+    }
+    #header-cannonball-2 {
+        display: none;
+    }
+}
+
+/* Medium devices (landscape tablets, 769px to 992px) */
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+:root {
+    font-size: 0.8rem;
+}
+#notification-container {
+    position: absolute;
+    width: 40vw;
+    h1 {
+        font-size: 2em;
+    }
+}
+.miss {
+    font-size: 1.2em;
+}
+.container {
+    display: grid;
+    grid-template-areas: 
+    "player-grid player-grid ui-controls"
+    "ai-grid ai-grid ai-grid";
+    background: white;
+}
+
+#ai-grid-container {
+    grid-area: ai-grid;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    background: white;
+    table {
+        font-size: 1rem;
+        justify-self: flex-start;
+        width: 35vw; 
+        height: 35vw;
+    }
+}
+#player-grid-container {
+    grid-area: player-grid;
+    background: $container-color;
+    align-self: flex-start;
+    border-right: 0.7rem solid white;
+    height: 52vh;
+    table {
+        width:40vw;
+        height: 40vw;
+    }
+}
+#ui-controls {
+    height: 52vh;
+    grid-area: ui-controls;
+    background: $container-color;
+}
+#ship-setup-container {
+    font-size: 1em;
+}
+.ship-img {
+    height: 10em;
+    width: 10em;
+    position: absolute;
+}
+
+#ship-1, #ship-2 {
+    top: 5%;
+    }
+}
+
+// /* Large devices (laptops/desktops, 993px and up) */
+@media only screen and (min-width: 993px) and (max-width: 1199px) {
+    :root {
+        font-size: 0.8rem;
+    }
+    #notification-container {
+        position: absolute;
+        width: 40vw;
+        h1 {
+            font-size: 3em;
+        }
+    }
+    .miss {
+        font-size: 1.3em;
+    #ai-grid {
+        font-size: 0.8rem;
+        width: 20vw;
+        height: 20vw;
+        td {
+            font-size: 0.5rem;
+            }
+        }
+    }
+    .container {
+        display: grid;
+        grid-template-areas: 
+        "player-grid player-grid ui-controls"
+        "ai-grid ai-grid ai-grid";
+        background: white;
+    }
+
+    #ai-grid-container {
+        grid-area: ai-grid;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        height: 100%;
+        width: 100%;
+        background: white;
+        table {
+            font-size: 1rem;
+            justify-self: flex-start;
+            width: 35vw; 
+            height: 35vw;
+        }
+    }
+    #player-grid-container {
+        grid-area: player-grid;
+        background: $container-color;
+        align-self: flex-start;
+        border-right: 0.7rem solid white;
+        height: 52vh;
+        table {
+            width:40vw;
+            height: 40vw;
+        }
+    }
+    #ui-controls {
+        height: 52vh;
+        grid-area: ui-controls;
+        background: $container-color;
+    }
+    #ship-setup-container {
+        font-size: 1em;
+    }
+    .ship-img {
+        height: 15em;
+        width: 15em;
+        position: absolute;
+    }
+
+    #ship-1, #ship-2 {
+        top: 6%;
+    }
+
+    #submit-btn {
+        width: 80% !important;
+    }
+}
+
+// /* Extra large devices (large laptops and desktops, 1200px and up) */
+// @media only screen and (min-width: 1200px) {
+
+// }
+    
+
+
+
+
+
+
+

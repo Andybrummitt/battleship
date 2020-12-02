@@ -1,0 +1,125 @@
+
+header {
+    grid-area: 'header';
+    @include flexCenter(row)
+}
+
+#vector-credit {
+    position: absolute;
+    top: 1%;
+    left: 1%;
+}
+
+#game-title {
+    text-align: center;
+    font-size: 5em;
+    opacity: 0.3;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    z-index: 2;
+    color: brown;
+    text-shadow: 0 2px 2px white;
+}
+
+#behind-title-img {
+    background: $cannonball-color;
+    border-radius: 50%;
+    width: 7rem;
+    height: 7rem;
+    position: absolute;
+    box-shadow: 0 0 30px 30px lightgray;
+}
+
+.ship-img {
+    height: 20em;
+    width: 20em;
+    position: absolute;
+}
+
+/*  ---------------------    LEFT SIDE SHIP ANIMATION --------------------------    */
+
+#ship-1 {
+    left: 2%;
+    top: 2%;
+    transform: rotate(10deg);
+    z-index: 1;
+}
+
+#header-cannonball-1-container {
+    animation: fire-left-xaxis1 1.2s ease-in;
+    position: absolute;
+    left: 14%;
+    top: 10.5%;
+}
+
+@keyframes fire-left-xaxis1 {
+    from {
+        transform: translateX(0px);
+    }
+    to {
+        transform: translateX(30vw);
+    }
+}
+
+#header-cannonball-1 {
+    background: $cannonball-color;
+    border-radius: 50%;
+    animation: fire-left-yaxis1 1.2s ease-out;
+}
+
+@keyframes fire-left-yaxis1 {
+    from {
+        width: 1px;
+        height: 1px;
+        transform: translateY(0px);
+    }
+    to {
+        width: 1vw;
+        height: 1vw;
+        transform: translateY(-4vw)
+    }
+}
+
+/*  ---------------------    RIGHT SIDE SHIP ANIMATION   --------------------------    */
+
+#ship-2 {
+    right: 2%;
+    top: 2%;
+    transform: scaleX(-1) rotate(10deg);
+    z-index: 1;
+}
+
+#header-cannonball-2-container {
+    animation: fire-left-xaxis2 1.2s ease-in;
+    position: absolute;
+    right: 14%;
+    top: 10.5%;
+}
+
+@keyframes fire-left-xaxis2 {
+    from {
+        transform: translateX(0px);
+    }
+    to {
+        transform: translateX(-30vw);
+    }
+}
+
+#header-cannonball-2 {
+    background: #1c1c1c;
+    border-radius: 50%;
+    animation: fire-left-yaxis2 1.2s ease-out;
+}
+
+@keyframes fire-left-yaxis2 {
+    from {
+        width: 1px;
+        height: 1px;
+        transform: translateY(0px);
+    }
+    to {
+        width: 1vw;
+        height: 1vw;
+        transform: translateY(-4vw)
+    }
+}

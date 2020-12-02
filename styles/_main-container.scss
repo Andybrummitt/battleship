@@ -1,0 +1,142 @@
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    background: white;
+}
+
+#ai-grid-container {
+    text-align: center;
+    background: linear-gradient(160deg, transparent 12.5%, $container-color 12.5%);
+    font-size: 1.5em;
+    @include flexCenter(column);
+}
+
+#player-grid-container {
+    background: $container-color;
+    font-size: 1.5em;
+    @include flexCenter(column);
+    border-left: 0.3em solid white;
+    border-right: 0.3em solid white;
+}
+
+.ship-select-btn {
+    width: 100%;
+    padding: 0.3em;
+    margin: 0.4em;
+    font-size: 1.2em;
+    box-shadow: 0em 0em 0.2em 0em #949494;
+    background:#f7ffff;
+    border-radius: 0.5em;
+    border: none;
+}
+
+.ship-select-btn:hover:enabled {
+    background: brown;
+    color: white;
+    transition: 0.4s ease;
+}
+
+#ui-controls {
+    background: linear-gradient(-160deg, transparent 12.5%, $container-color 12.5%);
+    position: relative;
+    #guess-form {
+        @include flexCenter(column);
+        font-size: 1.5em;
+        font-family: sans-serif;
+        position: absolute;
+        top: 30%;
+        width: 100%;
+        text-align: center;
+        input {
+            font-size: 1.5em;
+            box-shadow: 0em 0em 0.2em 0em #949494;
+            width: 30%;
+            border-style: none;
+            text-align: center;
+            border-radius: 0.3em;
+        }
+        button {
+            font-size: 1.5em;
+            @extend .ship-select-btn;
+            width: 80%;
+        }
+        button:hover:enabled {
+            @extend .ship-select-btn:hover;
+        }
+    } 
+}
+
+#ship-setup-container {
+    width: 100%;
+    position: absolute;
+    top: 20%;
+    font-size: 1.5em;
+    text-align: center;
+    @include flexCenter(column);
+    #ship-select-btns {
+        @include flexCenter(column);
+    }
+    #toggle-ship-direction {
+        @extend .ship-select-btn;
+        width: auto;
+    }
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    td {
+        border: 1px solid black; 
+        padding: 0; 
+    }
+}
+
+#player-grid {
+    width: 35vw;
+    height: 35vw;
+     td {
+        background: $sea-color;
+        width: calc(35vw/11);
+        height: calc(35vw/11);
+    }
+} 
+
+#ai-grid {
+    background: white;
+    width: 20vw;
+    height: 20vw;
+    font-size: 0.6rem;
+    th {
+        font-size: 1.5em;
+    }
+    td {
+        height: calc(20vw/11);
+        width: calc(20vw/11);
+        font-size: 1.5em;
+    }
+    tr:nth-child(odd) td:nth-child(even) {
+        background: #f2f2f2;
+    }
+    tr:nth-child(even) td:nth-child(odd) {
+        background: #f2f2f2;
+    }
+}
+
+.text-div {
+    z-index: 2;
+    position: absolute;
+    top: 1%;
+    left: 1%;
+}
+
+.td-container-div {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

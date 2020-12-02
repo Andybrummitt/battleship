@@ -1,0 +1,80 @@
+//  WHEN PICKING SHIP POSITION
+.active {
+    opacity: 0.7;
+    box-shadow: 0px 0px !important;
+}
+
+.ship-set {
+    //  STYLE USED FOR TILEAVAILABLE RULE
+}
+
+.ship-sunk {
+    background: green;
+    opacity: 0.5;
+    box-shadow: 0px 0px !important;
+}
+
+/*  --------------- VERTICAL ------------------- */
+
+//  SHIP MIDDLE TILES
+.ship-body-vertical {
+    width: 80%;
+    height: 100%;
+    background: $ship-main-color;
+}
+
+//  SHIP HEAD TILE
+.ship-head-vertical {
+    background: linear-gradient($ship-gradient-color, $ship-main-color);
+    position: absolute;
+    width: 80%;
+    bottom: 0px;
+    height: 80%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    box-shadow: 0 -0.1em 0.3em 0.05em white;
+}
+
+//  SHIP TAIL TILE
+.ship-tail-vertical {
+    background: linear-gradient($ship-main-color, $ship-gradient-color);
+    position: absolute;
+    width: 80%;
+    top: 0px;
+    height: 80%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    box-shadow: 0 0.1em 0.3em 0.05em white;
+}
+
+/*  --------------- HORIZONTAL ------------------- */
+
+.ship-body-horizontal {
+    width: 100%;
+    height: 80%;
+    background: $ship-main-color;
+}
+
+//  SHIP HEAD TILE
+.ship-head-horizontal {
+    background: linear-gradient(.25turn, $ship-gradient-color, $ship-main-color);
+    position: absolute;
+    width: 80%;
+    right: 0px;
+    height: 80%;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+    box-shadow: -0.1em 0 0.3em 0.05em white;
+}
+
+//  SHIP TAIL TILE
+.ship-tail-horizontal {
+    background: linear-gradient(.25turn, $ship-main-color, $ship-gradient-color);
+    position: absolute;
+    width: 80%;
+    left: 0px;
+    height: 80%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    box-shadow: 0.1em 0 0.3em 0.05em white;
+}

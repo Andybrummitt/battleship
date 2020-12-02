@@ -14,8 +14,7 @@ const randomNumGenerate = tilesLeftCopy => randomNumArray => {
 
 const randomTiles = tilesLeft => {
     const tilesLeftCopy = [...tilesLeft];
-    //CHANGE HERE TO TILESLEFT.LENGTH/1 FOR DEPLOY -----------------------------<<<<<
-    const randomAmount = Math.floor(tilesLeft.length/2);
+    const randomAmount = Math.floor(tilesLeft.length/5);
     const randomNumArray = [];
     const randomTiles = [];
     
@@ -91,7 +90,6 @@ const addRemoveHideAll = randomTilesArr => {
 };
 
 export const addWaveAnimation = async randomTilesArr => {
-    //change here
     addRemoveHideAll(randomTilesArr);
     // SLEEP 1.5 SECONDS
     await new Promise(resolve => setTimeout(() => {

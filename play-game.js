@@ -6,6 +6,7 @@ import { addHoleToShip, shipSunk, wonGame, isHit, isMiss, executeAfter1Sec, clea
 import AIturnsTracker from './ai-turns-tracker.js';
 import { animateHitPlayerGrid, animateHitAIGrid, animateMiss, colorShipSunk, colorAItilePositionsSunk } from './hit-animation.js';
 
+
 const { shipSetupContainer, guessForm, submitBtn, guessInput, getTds, aiGrid, playerGrid } = domObj;
 
 const aiTds = getTds(aiGrid);
@@ -162,6 +163,7 @@ const handleSubmit = async e => {
     const regex = /^[a-j]{1}([1-9]|10)$/i;
     const result = regex.test(guess);
     const playerGuessTile = aiTds.filter(tile => tile.firstElementChild.firstElementChild.textContent === guess)[0];
+
     if(result && !AItilesLeft.includes(playerGuessTile)){
         clearInputAndDisableGuessBtn(submitBtn)(guessInput);
         if(isHit(guess)(aiTilesPositionsArr)){

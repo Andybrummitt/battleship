@@ -21,6 +21,7 @@ const domObj = {
     shipSetupContainer: document.querySelector('#ship-setup-container'),
     shipBtnsDiv: document.querySelector('#ship-select-btns'),
     toggleShipDirectionBtn: document.querySelector('#toggle-ship-direction'),
+    hoverShipDiv: document.querySelector('.hover-ship-div')
 };
 
 export default domObj;

@@ -8,6 +8,9 @@ import { addWaveAnimation } from './wave-animation.js';
 import setShipTiles from './make-ship-shape.js';
 import setShipStyles from './make-ship-shape.js';
 import { shipSet } from './game-utils.js';
+import { createHoverDiv } from './hover-effect.js';
+
+const { hoverShipDiv } = domObj;
 
 //---------------------- SET COLOR FUNCTIONS -----------------------------
 
@@ -84,8 +87,17 @@ const shipBtnClickListener = ship => {
             setShipStyles(tiles)(ship)(false);
             //  IF ALL SHIPS PICKED HIDE SHIP SELECT BUTTONS AND START GAME
             if(shipsPicked(user.ships)){
+                //  ADD HOVER FUNCTIONALITY
+                playerGridTds.forEach(td => td.addEventListener('mouseover', e => {
+                    createHoverDiv(e);
+                }));
+                playerGridTds.forEach(td => td.addEventListener('mouseleave', e => {
+                        if(!hoverShipDiv.classList.contains('hide')){
+                            hoverShipDiv.classList.add('hide');
+                        };
+                }));
+                //  START GAME
                 startGame(setUpGame)(guessForm);
-                console.log(shipBtnsContainer)
                 shipBtnsContainer.classList.add('hide');
             };
             enableUnselectedShipBtns(shipBtns)(user.ships);
