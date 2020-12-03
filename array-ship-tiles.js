@@ -7,18 +7,17 @@ const getArrayOfShipTiles = td => ship => {
     //  IF TD THAT MOUSE IS OVER IS ALREADY SELECTED RETURN
     if(!tileAvailable(td)) return;
     let arrOfShipTiles = [];
-    //  CHECK THIS!!!!
     let childPosition = parseInt(td.textContent.slice(1));
 
     const nextTileSpace = getNextTileSpace(td)(tileAvailable)(ship)(childPosition);
     const spaceNeeded = Math.floor((ship.numTiles -1));
-    
     if(ship.horizontal){
+        //  IF NOT ENOUGH SPACE, RETURN
         if(nextTileSpace.horizontalSpaceLeft < spaceNeeded){
             return;
         };
     
-        //return next tiles pushed in arrOfShipTiles
+        //  ELSE PUSH TILES INTO ARRAY
         for(let i = 0; i <= spaceNeeded; i++){
             arrOfShipTiles.push(td);
             td = td.nextElementSibling;

@@ -1,6 +1,5 @@
 import { playerGridTds } from './ai-turn-algorithm.js';
 import turns from './ai-turns-tracker.js';
-import domObj from './dom-obj.js';
 import { user } from './players-objs.js';
 
 //  KEEP GENERATING RANDOM NUMS UNTIL WE GET A UNIQUE ONE
@@ -48,7 +47,6 @@ const changeWavePhase = tile => {
             //  DO NOT REMOVE TEXT OR SHIP CLASSES
             if(!grandChild.classList.contains('text-div') && !grandChild.classList.contains('active') && !grandChild.classList.contains('cannonball')){
                 const wavePhaseText = grandChild.classList.value;
-                // console.log(wavePhaseText)
                 const phaseNumber = wavePhaseText.slice(wavePhaseText.length-1);
                 let oppositeWavePhase;
                 if(phaseNumber === '1'){
@@ -73,8 +71,8 @@ const removeHide = tile => {
 const addHide = tile => {
     for(let child of tile.children){
         for(let grandChild of child.children){
-            //  IF GRANDCHILD CONTAINS WAVE CHILD
             if(grandChild.classList[0]){
+                //  IF GRANDCHILD CONTAINS WAVE CLASS, ADD HIDE CLASS 
                 if(grandChild.classList[0].slice(0,4) === 'wave'){
                     grandChild.classList.add('hide');
                 }; 
@@ -91,7 +89,7 @@ const addRemoveHideAll = randomTilesArr => {
 
 export const addWaveAnimation = async randomTilesArr => {
     addRemoveHideAll(randomTilesArr);
-    // SLEEP 1.5 SECONDS
+    // SLEEP 1 SECOND
     await new Promise(resolve => setTimeout(() => {
         resolve();
     }, 1000));
@@ -106,6 +104,7 @@ export const addWaveAnimation = async randomTilesArr => {
     }
 };
 
+//  EVERY 3 SECONDS GET NEW RANDOM WAVE TILES AND ADD ANIMATION
 setInterval(() => {
     const userTiles = user.getAllTilePositions();
     const prevTurns = turns.hits.concat(turns.misses);

@@ -1,9 +1,3 @@
-// const playergridfirstRow = document.querySelector('#player-grid').lastElementChild.children[0];
-
-// const children = Array.from(playergridfirstRow.children);
-
-// const ship = children.splice(1,5);
-
 const makeShipShape = tiles => ship => isActive => {
     let direction;
     const lastDivPosition = tiles[0].firstElementChild.children.length-1;
@@ -46,18 +40,7 @@ const makeShipShape = tiles => ship => isActive => {
     };
 };
 
-// const removeClassesFromTilesChildren = tiles => {
-//     tiles.forEach(tile => {
-//         [...tile.firstElementChild.children].forEach(grandChild => {
-//             if(grandChild.className !== 'text-div'){
-//                 grandChild.className = '';
-//             };
-//         });
-//     });
-// };
-
 const setShipStyles = tiles => ship => isActive => {
-    // removeClassesFromTilesChildren(tiles);
     makeShipShape(tiles)(ship)(isActive);
 };
 

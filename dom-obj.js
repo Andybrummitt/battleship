@@ -11,6 +11,7 @@ const domObj = {
     guessForm: document.querySelector('#guess-form'),
     guessInput: document.querySelector('#guess-input'),
     submitBtn: document.querySelector('#submit-btn'),
+    aiShipsLeftDiv: document.querySelector('#ai-ships-left'),
     getTds: grid => {
         return [...grid.lastElementChild.children]
         .filter(child => child.nodeName === 'TR')

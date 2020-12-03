@@ -1,25 +1,16 @@
 import getArrayOfShipTiles from './array-ship-tiles.js';
 import shipState from './ship-state.js';
 import domObj from './dom-obj.js';
-import { ai, user } from './players-objs.js';
+import { user } from './players-objs.js';
 import { startGame, setUpGame } from './play-game.js';
-import { isTd } from './ai-turn-algorithm.js';
-import { addWaveAnimation } from './wave-animation.js';
 import setShipTiles from './make-ship-shape.js';
 import setShipStyles from './make-ship-shape.js';
-import { shipSet } from './game-utils.js';
 import { createHoverDiv } from './hover-effect.js';
 
 const { hoverShipDiv } = domObj;
 
-//---------------------- SET COLOR FUNCTIONS -----------------------------
-
-const setTd = color => td => td.firstElementChild.style.background = color;
-const setTdRed = setTd('red');
-const setTdGrey = setTd('grey');
 //  REMOVE ALL CHILD CLASSNAMES THAT INCLUDE SHIP STYLING
 const resetTdColor = td => td.firstElementChild.lastElementChild.className = '';
-//td => td.firstElementChild.className = 'ship-color';
 
 // ----------------- GET DOM ELEMENTS FUNCTIONS --------------------------
 
@@ -67,7 +58,6 @@ const shipBtnClickListener = ship => {
     shipState.changeShip(ship);
     let tiles = [];
     let prevTiles = [];
-    console.log(ship)
     //MOUSEOVER CALLBACK THAT GETS TILES AND PAINTS 
     const mouseoverCb = ({target}) => {
             if(!shipHasBeenSelected(ship)){

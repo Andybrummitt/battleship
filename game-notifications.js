@@ -1,6 +1,6 @@
 import domObj from './dom-obj.js';
 
-const { container, notifBox, notifTitle, notifText } = domObj;
+const { container, notifBox, notifTitle } = domObj;
 
 const addClassToElem = elem => className => {
     if(!elem.classList.contains(className)){
@@ -20,7 +20,7 @@ const changeNotifBody = (title) => {
 
 
 const notification = argsForCb => tile => async isAnimated => {
-    //  ISANIMATED = HITS OR MISSES WHERE CANNONBALL ANIMATION HAPPENS 
+    //  ISANIMATED = HITS OR MISSES (WHERE CANNONBALL ANIMATION HAPPENS) 
     changeNotifBody(argsForCb)
     if(isAnimated){
         removeClassFromElem(notifBox)('hide');
@@ -28,9 +28,8 @@ const notification = argsForCb => tile => async isAnimated => {
                 tile.addEventListener('animationend', async e => {
                     await addClassToElem(notifBox)('hide');
                     resolve();
-                    //  NEED TO FIX BUG WITH SAME TILES OR THIS WILL NEVER RESOLVE
                 });     
-            })
+            });
     }
     else {
         // SLEEP 1 SECOND
@@ -40,14 +39,18 @@ const notification = argsForCb => tile => async isAnimated => {
         }, 1000));
         addClassToElem(notifBox)('hide');
         return;
-    }
-    
-    // SLEEP 2 SECONDS
-    // await new Promise(resolve => setTimeout(() => { 
-    //     resolve();
-    // }, 2000));
-    
-    // removeClassFromElem(container)('fade');   
+    };
 };
 
-export { notification, changeNotifBody, addClassToElem, removeClassFromElem };
+//  SHOW VICTORY OR DEFEAT MESSAGE ON GAME END
+const gameOverNotification = msg => {
+    const gameOverNotification = document.createElement('h1');
+    gameOverNotification.className = `gameover-notification`;
+    gameOverNotification.textContent = msg;
+    const gameOverNotificationContainer = document.createElement('div');
+    gameOverNotificationContainer.className = `gameover-container`;
+    gameOverNotificationContainer.append(gameOverNotification);
+    container.append(gameOverNotificationContainer);
+};
+
+export { notification, changeNotifBody, addClassToElem, removeClassFromElem, gameOverNotification };

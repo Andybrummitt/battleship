@@ -27,6 +27,6 @@ const createHoverDiv = ({ target, clientX, clientY }) => {
     };   
 };
 
-export { createHoverDiv }
+export { createHoverDiv };
 
 

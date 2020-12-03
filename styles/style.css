@@ -281,6 +281,19 @@ header {
 #ui-controls {
   background: linear-gradient(-160deg, transparent 12.5%, #f2f2f2 12.5%);
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 #ui-controls #guess-form {
@@ -299,9 +312,8 @@ header {
           justify-content: center;
   font-size: 1.5em;
   font-family: sans-serif;
-  position: absolute;
-  top: 30%;
-  width: 100%;
+  margin-top: 8em;
+  margin-bottom: 2em;
   text-align: center;
 }
 
@@ -430,6 +442,57 @@ table td {
           align-items: center;
 }
 
+#ai-ships-left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 80%;
+  text-align: center;
+}
+
+#ai-ships-left h3 {
+  text-align: center;
+  font-size: 2rem;
+}
+
+#ai-ships-left ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  list-style-type: none;
+  width: 80%;
+  padding: 0;
+}
+
+#ai-ships-left ul li {
+  font-size: 1.2rem;
+  background: #fafafa;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  width: 60%;
+}
+
 .active {
   opacity: 0.7;
   -webkit-box-shadow: 0px 0px !important;
@@ -509,43 +572,79 @@ table td {
           box-shadow: 0.1em 0 0.3em 0.05em white;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-button {
-  cursor: pointer;
-}
-
-.hide {
-  display: none !important;
-}
-
-.fade {
-  opacity: 0.3;
-}
-
-#grid-container-div {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-rows: 13vh 87vh;
-      grid-template-rows: 13vh 87vh;
-}
-
-.hover-ship-div {
-  text-align: center;
-  border: 3px solid black;
-  border-radius: 0.5em;
-  background: white;
-  opacity: 0.75;
+/*  --------------------- HIT ANIMATION -------------- */
+.cannonball {
+  background: #1c1c1c;
+  border-radius: 50%;
+  -webkit-animation: drop 2s ease-in;
+          animation: drop 2s ease-in;
+  z-index: 1;
   position: absolute;
-  z-index: 4;
-  list-style-type: none;
-  padding: 0.5em;
-  font-family: "Teko", sans-serif;
+}
+
+@-webkit-keyframes drop {
+  from {
+    height: 50%;
+    width: 50%;
+  }
+  to {
+    height: 10%;
+    width: 10%;
+  }
+}
+
+@keyframes drop {
+  from {
+    height: 50%;
+    width: 50%;
+  }
+  to {
+    height: 10%;
+    width: 10%;
+  }
+}
+
+.flame {
+  bottom: 20%;
+  position: absolute;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+  border-top-left-radius: 50%;
+  -webkit-transform: rotate(-45deg) scale(1.5, 1.5);
+          transform: rotate(-45deg) scale(1.5, 1.5);
+  z-index: 1;
+}
+
+.red {
+  width: 40%;
+  height: 40%;
+  background: OrangeRed;
+  -webkit-box-shadow: 0px 0px 0.25em 0.125em OrangeRed;
+          box-shadow: 0px 0px 0.25em 0.125em OrangeRed;
+}
+
+.orange {
+  width: 30%;
+  height: 30%;
+  background: orange;
+  -webkit-box-shadow: 0px 0px 0.5em 0.125em orange;
+          box-shadow: 0px 0px 0.5em 0.125em orange;
+}
+
+.yellow {
+  width: 20%;
+  height: 20%;
+  background: gold;
+  -webkit-box-shadow: 0px 0px 0.5em 0.125em gold;
+          box-shadow: 0px 0px 0.5em 0.125em gold;
+}
+
+.white {
+  width: 10%;
+  height: 10%;
+  background: white;
+  -webkit-box-shadow: 0px 0px 0.4em 0.125em white;
+          box-shadow: 0px 0px 0.4em 0.125em white;
 }
 
 .wave-1-phase1 {
@@ -652,6 +751,50 @@ button {
   border-bottom-left-radius: 50%;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+}
+
+.hide {
+  display: none !important;
+}
+
+.fade {
+  opacity: 0.3;
+}
+
+#grid-container-div {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 13vh 87vh;
+      grid-template-rows: 13vh 87vh;
+}
+
+.hover-ship-div {
+  text-align: center;
+  border: 3px solid black;
+  border-radius: 0.5em;
+  background: white;
+  opacity: 0.75;
+  position: absolute;
+  z-index: 4;
+  list-style-type: none;
+  padding: 0.5em;
+  font-family: "Teko", sans-serif;
+}
+
+.crossed-out {
+  -webkit-text-decoration: line-through red;
+          text-decoration: line-through red;
+}
+
 /*  ----------------------  MISS STYLING ------------------- */
 .miss {
   font-size: 1.8em;
@@ -659,86 +802,47 @@ button {
   font-family: 'Questrial', sans-serif;
 }
 
-/*  --------------------- HIT ANIMATION -------------- */
-.cannonball {
-  background: #1c1c1c;
-  border-radius: 50%;
-  -webkit-animation: drop 2s ease-in;
-          animation: drop 2s ease-in;
-  z-index: 1;
-  position: absolute;
-}
-
-@-webkit-keyframes drop {
-  from {
-    height: 50%;
-    width: 50%;
-  }
-  to {
-    height: 10%;
-    width: 10%;
-  }
-}
-
-@keyframes drop {
-  from {
-    height: 50%;
-    width: 50%;
-  }
-  to {
-    height: 10%;
-    width: 10%;
-  }
-}
-
-.flame {
-  bottom: 20%;
-  position: absolute;
-  border-bottom-right-radius: 50%;
-  border-bottom-left-radius: 50%;
-  border-top-left-radius: 50%;
-  -webkit-transform: rotate(-45deg) scale(1.5, 1.5);
-          transform: rotate(-45deg) scale(1.5, 1.5);
-  z-index: 1;
-}
-
-.red {
-  width: 40%;
-  height: 40%;
-  background: OrangeRed;
-  -webkit-box-shadow: 0px 0px 0.25em 0.125em OrangeRed;
-          box-shadow: 0px 0px 0.25em 0.125em OrangeRed;
-}
-
-.orange {
-  width: 30%;
-  height: 30%;
-  background: orange;
-  -webkit-box-shadow: 0px 0px 0.5em 0.125em orange;
-          box-shadow: 0px 0px 0.5em 0.125em orange;
-}
-
-.yellow {
-  width: 20%;
-  height: 20%;
-  background: gold;
-  -webkit-box-shadow: 0px 0px 0.5em 0.125em gold;
-          box-shadow: 0px 0px 0.5em 0.125em gold;
-}
-
-.white {
-  width: 10%;
-  height: 10%;
-  background: white;
-  -webkit-box-shadow: 0px 0px 0.4em 0.125em white;
-          box-shadow: 0px 0px 0.4em 0.125em white;
-}
-
 .ship-sunk {
   background: red;
 }
 
-/* ---------------------    NOTIFICATION    ---------------------------- */
+/* ---------------------    NOTIFICATIONS    ---------------------------- */
+.gameover-notification {
+  position: relative;
+  left: -50%;
+  z-index: 5;
+  font-size: 15em;
+  font-family: "Teko", sans-serif;
+  color: brown;
+  text-shadow: 0 10px 2px white;
+  -webkit-animation: scaleUp 2s;
+          animation: scaleUp 2s;
+}
+
+@-webkit-keyframes scaleUp {
+  from {
+    font-size: 1em;
+  }
+  to {
+    font-size: 15em;
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    font-size: 1em;
+  }
+  to {
+    font-size: 15em;
+  }
+}
+
+.gameover-container {
+  position: absolute;
+  left: 50%;
+  top: 15%;
+}
+
 #notification-box {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -823,6 +927,12 @@ button {
     width: 35vw;
     height: 35vw;
   }
+  #ai-ships-left h3 {
+    font-size: 1.5rem;
+  }
+  #ai-ships-left ul li {
+    font-size: 0.8rem;
+  }
   #player-grid-container {
     -ms-grid-row: 1;
     -ms-grid-row-span: 2;
@@ -855,6 +965,10 @@ button {
     -ms-grid-column: 3;
     grid-area: ui-controls;
     background: #f2f2f2;
+  }
+  #ui-controls #guess-form {
+    margin-top: 5em;
+    margin-bottom: 1em;
   }
   #ship-setup-container {
     font-size: 1.2em;
@@ -1055,6 +1169,10 @@ button {
     grid-area: ui-controls;
     background: #f2f2f2;
   }
+  #ui-controls #guess-form {
+    margin-top: 4em;
+    margin-bottom: 1em;
+  }
   #ship-setup-container {
     font-size: 1em;
   }
@@ -1226,6 +1344,18 @@ button {
   }
   #submit-btn {
     width: 80% !important;
+  }
+}
+
+/* Extra large devices (medium laptops and desktops, 1200px to 1499px) */
+@media only screen and (min-width: 1201px) and (max-width: 1499px) {
+  .ship-img {
+    height: 15em;
+    width: 15em;
+    position: absolute;
+  }
+  #ship-1, #ship-2 {
+    top: 6%;
   }
 }
 /*# sourceMappingURL=style.css.map */

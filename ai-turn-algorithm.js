@@ -6,16 +6,6 @@ import { guessAfterHit, continueHitStreakGuess } from './ai-guess-alogrithms.js'
 const { playerGrid, getTds } = domObj;
 export const playerGridTds = getTds(playerGrid);
 
-//  GETTING ALL AI TILES POSITIONS THAT WERE SELECTED
-// const aiTilesPositionsArr = ai.ships
-//     .map(ship => ship.tilePositions
-//     .map(positions => positions))
-//     .flat();
-
-
-    // const aiTilesPositionsArr = ai.getAllTilePositions()
-    console.log(ai.ships.map(ship => ship.tilePositions))
-
 const randomIndex = arr => Math.floor(Math.random() * arr.length);
 
 const inArray = arr => elem => arr.includes(elem);
@@ -39,15 +29,15 @@ export const handleTurn = () => {
     const hitStreakArray = turns.getHitStreakArray();
 
     const { lastHit } = turns;
-
+    //  IF NO HITS
     if(!turns.lastHit){
         guess = randomTile;
     }
-    //  IF THERE IS A HITSTREAK OF 1 - CALL GUESSAFTERHIT
+    //  IF THERE IS A HITSTREAK OF 1
     else if(turns.lastHit && !hitStreakArray){
         guess = guessAfterHit(tilesLeft)(lastHit);
     }
-    //  IF THERE IS A HITSTREAK OF 2+ - CALL CONTINUEHITSTREAKGUESS
+    //  IF THERE IS A HITSTREAK OF 2+
     else if(hitStreakArray){
         guess = continueHitStreakGuess(lastHit)(tilesLeft)(hitStreakArray);
     };

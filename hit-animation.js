@@ -1,23 +1,14 @@
-import domObj from './dom-obj.js';
-import { shipSet } from './game-utils.js';
-
-const { playerGrid, getTds } = domObj;
-
-// const randomIndex = arr => Math.floor(Math.random() * arr.length);
-// const getRandomTile = arr => randomIndex => arr[randomIndex];
-// const randomTile = getRandomTile(getTds(playerGrid))(randomIndex(getTds(playerGrid)));
-
 const colorTileMiss = tile => {
     tile.firstElementChild.children[1].className = 'miss';
     tile.firstElementChild.children[1].textContent = 'X';
 }
 
 const colorTileHit = tile => {
-    tile.firstElementChild.style.background = 'green';
+    tile.firstElementChild.style.background = '#70ff9c';
 };
 
 const colorAItilePositionsSunk = tilePositions => {
-    tilePositions.forEach(tile => tile.firstElementChild.style.background = 'red');
+    tilePositions.forEach(tile => tile.firstElementChild.style.background = '#00a131');
 }
 
 const cannonballAnimation = tile => {
@@ -28,11 +19,6 @@ const cannonballAnimation = tile => {
     });
 
     tile.firstElementChild.children[4].classList.add('cannonball');
-    // console.log(tile.firstElementChild.classList)
-    // console.log(tile.firstElementChild.firstElementChild.classList)
-    // console.log(tile.firstElementChild.children[1].classList)
-    // console.log(tile.firstElementChild.children[2].classList)
-    // console.log(tile.firstElementChild.lastElementChild.classList)
 };
 
 const fireAnimation = tile => {
@@ -51,7 +37,6 @@ const fireAnimation = tile => {
     div3.classList.add('orange');
     div4.classList.add('yellow');
     div5.classList.add('white');
-    // console.log(tileDivs)
 };
 
 const animateHitPlayerGrid = tile => {
@@ -76,13 +61,6 @@ const animateMiss = tile => {
     });  
 };
 
-const playergridfirstRow = document.querySelector('#player-grid').lastElementChild.children[0];
-
-const children = Array.from(playergridfirstRow.children);
-
-const ship = children.splice(1,5);
-console.log(ship)
-
 const colorShipSunk = shipTiles => {
     //  REMOVE CLASSES OF ALL CHILDREN
     shipTiles.forEach(tile => {
@@ -90,6 +68,7 @@ const colorShipSunk = shipTiles => {
             if(!grandChild.classList.contains('text-div')){
                 if(grandChild.classList.contains('ship-set')){
                     grandChild.classList.add('ship-sunk');
+                    console.log(grandChild)
                 }
                 else {
                     grandChild.className = '';

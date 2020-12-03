@@ -1,21 +1,21 @@
 import domObj from './dom-obj.js';
-import { notification, changeNotifBody, addClassToElem, removeClassFromElem } from './game-notifications.js';
+import { notification, addClassToElem, removeClassFromElem, gameOverNotification } from './game-notifications.js';
 import { handleTurn, isTd } from './ai-turn-algorithm.js';
 import { ai, user } from './players-objs.js';
-import { addHoleToShip, shipSunk, wonGame, isHit, isMiss, executeAfter1Sec, clearInputAndDisableGuessBtn, removeHitTile, isUnavailable, removeEmptyArrays, clearArray } from './game-utils.js';
+import { addHoleToShip, shipSunk, wonGame, isHit, isMiss, clearInputAndDisableGuessBtn, removeHitTile, isUnavailable, removeEmptyArrays, clearArray } from './game-utils.js';
 import AIturnsTracker from './ai-turns-tracker.js';
 import { animateHitPlayerGrid, animateHitAIGrid, animateMiss, colorShipSunk, colorAItilePositionsSunk } from './hit-animation.js';
 
-
-const { shipSetupContainer, guessForm, submitBtn, guessInput, getTds, aiGrid, playerGrid } = domObj;
+const { shipSetupContainer, guessForm, submitBtn, guessInput, getTds, aiGrid, aiShipsLeftDiv } = domObj;
 
 const aiTds = getTds(aiGrid);
-const playerTds = getTds(playerGrid);
 
 //  HIDE SETUP BUTTONS 
 const setUpGame = () => {
     addClassToElem(shipSetupContainer)('hide');
     removeClassFromElem(guessForm)('hide');
+    removeClassFromElem(aiShipsLeftDiv)('hide');
+    guessInput.focus();
 };
 
 //  SORT TILES FOR HIT STREAKS
@@ -131,7 +131,7 @@ const changeLastHit = AIturnsTracker => {
 const clearHitStreakArr = shipHit => {
     const {tilePositions} = shipHit;
     let { hitStreakX, hitStreakY } = AIturnsTracker;
-    //FILTER OUT ANY HITS FROM HITSTREAKS THAT INCLUDE SUNK HIT TILES 
+    //  FILTER OUT ANY HITS FROM HITSTREAKS THAT INCLUDE SUNK HIT TILES 
     let filteredStreakX = [...hitStreakX].map(arr => arr.filter(elem => !tilePositions.includes(elem)));
     let filteredStreakY = [...hitStreakY].map(arr => arr.filter(elem => !tilePositions.includes(elem)));
 
@@ -139,21 +139,30 @@ const clearHitStreakArr = shipHit => {
     AIturnsTracker.hitStreakY = removeEmptyArrays(filteredStreakY);
     
     changeLastHit(AIturnsTracker);
+};
 
-    console.log('aiturnstracker', AIturnsTracker)
+//  WHEN SHIP SUNK, PUT LINE THROUGH SHIPS LEFT DIV SHIP NAME
+const lineThroughAIshipsLeft = shipHit => {
+    const ul = aiShipsLeftDiv.lastElementChild;
+    [...ul.children].forEach(li => {
+        if(li.textContent === shipHit.name){
+            li.className = 'crossed-out';
+        };
+    });
 };
 
 //   KEEPING TRACK OF PLAYER GUESSES 
 const playerGuesses = [];
 
+//  ---------------------------------- MAIN TURN FUNCTION ----------------------------------- 
 
-//GAME TURN FROM CLIENT TO AI
+//  GAME TURN FROM CLIENT TO AI
 const handleSubmit = async e => {
     e.preventDefault();
     //  GET AI & USER TILE POSITIONS
     const aiTilesPositionsArr = ai.getAllTilePositions();
     const AItilesLeft = aiTds.filter(td => playerGuesses.includes(td));
-    console.log(aiTilesPositionsArr)
+    // console.log(aiTilesPositionsArr)
     const userTilesPositionsArr = user.ships
         .map(ship => ship.tilePositions
         .map(positions => positions))
@@ -163,26 +172,31 @@ const handleSubmit = async e => {
     const regex = /^[a-j]{1}([1-9]|10)$/i;
     const result = regex.test(guess);
     const playerGuessTile = aiTds.filter(tile => tile.firstElementChild.firstElementChild.textContent === guess)[0];
-
+    //  IF INPUT VALIDATED
     if(result && !AItilesLeft.includes(playerGuessTile)){
         clearInputAndDisableGuessBtn(submitBtn)(guessInput);
+        //  IF HIT
         if(isHit(guess)(aiTilesPositionsArr)){
             //  STYLE HIT TILE AND REMOVE FROM TILES ARR
             animateHitAIGrid(playerGuessTile);
             await notification(`${guess}: Hit!`)(playerGuessTile)(true);   
             removeHitTile(aiTilesPositionsArr)(playerGuessTile);
             const shipHit = addHoleToShip(ai.ships)(playerGuessTile);
+            //  IF SUNK SHIP
             if(shipSunk(shipHit)){
                 shipHit.sunk = true;
+                lineThroughAIshipsLeft(shipHit);
                 //  COLOR SHIP RED
                 colorAItilePositionsSunk(shipHit.tilePositions);
                 await notification(`${shipHit.name}: Sunk!`)(playerGuessTile)(false);
+                //  IF GAME OVER
                 if(wonGame(ai.ships)){
-                    await notification(`Game Over!`, `Player Wins!`)(playerGuessTile)(false);
+                    gameOverNotification('VICTORY');
                     return;
                 };
             };
         }
+        //  IF MISS
         else {
             animateMiss(playerGuessTile);
             await notification(`${guess}: Miss!`)(playerGuessTile)(true);
@@ -190,45 +204,59 @@ const handleSubmit = async e => {
         //AI TURN
         await notification(`AI turn`)('')(false);
         const AIguessTile = handleTurn();
+        //  IF AI HIT
         if(isHit(AIguessTile.firstElementChild.firstElementChild.textContent)(userTilesPositionsArr)){
             addHitInfoToTracker(AIguessTile);
             animateHitPlayerGrid(AIguessTile);
             await notification(`${AIguessTile.firstElementChild.firstElementChild.textContent}: Hit!`)(AIguessTile)(true);   
             removeHitTile(userTilesPositionsArr)(AIguessTile);
             const shipHit = addHoleToShip(user.ships)(AIguessTile);
+            //  IF AI MISS
             if(shipSunk(shipHit)){
-                shipHit.sunk = false;
+                shipHit.sunk = true;
                 clearHitStreakArr(shipHit);
                 colorShipSunk(shipHit.tilePositions)
                 await notification(`${shipHit.name}: Sunk!`)(AIguessTile)(false);
+                //  IF AI WINS
                 if(wonGame(user.ships)){
-                    await notification(`Game Over!`, `AI Wins!`)(AIguessTile)(false);
+                    //  SHOW USER WHICH AI SHIPS LEFT
+                    const AIshipsLeft = aiTilesPositionsArr.filter(tile => !playerGuesses.includes(tile));
+                    AIshipsLeft.forEach(tile => tile.style.background = '#4d94ff');
+                    gameOverNotification('DEFEAT');
                     return;
                 };
             };
         }
+        //  IF AI MISS
         else {
             AIturnsTracker.misses.push(AIguessTile);
             animateMiss(AIguessTile)
             await notification(`${AIguessTile.firstElementChild.firstElementChild.textContent}: Miss!`)(AIguessTile)(true);
         };
+        //  AFTER EACH PLAYER HAS TURN
         submitBtn.disabled = false;
         guessInput.disabled = false;
-        //CHECK HITSTREAK AND REMOVE DEAD STREAKS
+        playerGuesses.push(playerGuessTile);
+        
+        //  CHECK HITSTREAK AND REMOVE DEAD STREAKS
         let { hitStreakX, hitStreakY } = AIturnsTracker;
         removeNonfunctionalXStreak(hitStreakX);
         removeNonfunctionalYStreak(hitStreakY)(AIguessTile);
     }
+    //  IF PLAYER GUESSES SAME TILE
     else if(result && playerGuesses.includes(playerGuessTile)){
+        guessInput.value = '';
         await notification('You have already guessed that tile!')('')(false);
+        
     }
+    //  IF PLAYER GUESS DOESN'T PASS REGEX (ISN'T A TILE)
     else if(!result){
+        guessInput.value = '';
         await notification('That tile isn\'t even on the board!')('')(false);
     }
     //  ADD PLAYER GUESS TO ARRAY OF GUESSES
-    playerGuesses.push(playerGuessTile);
     guessInput.focus();
-    await notification(`Player Turn`)('')(false);
+    await notification(`Your Turn`)('')(false);
 };
 
 //  SET UP & START GAME

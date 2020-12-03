@@ -1,4 +1,4 @@
-import { inHits, inMisses, isTd, randomIndex } from './ai-turn-algorithm.js';
+import { inMisses, isTd, randomIndex } from './ai-turn-algorithm.js';
 
 const continueHitStreakGuess = tile => tilesLeft => arr => {
     let guess;
@@ -18,9 +18,11 @@ const continueHitStreakGuess = tile => tilesLeft => arr => {
     arr[arr.length-1].parentElement.nextElementSibling ? nextTileY = arr[arr.length-1].parentElement.nextElementSibling.children[childPosition] : prevTileX = null;
     let prevTileY;
     arr[0].parentElement.previousElementSibling ? prevTileY = arr[0].parentElement.previousElementSibling.children[childPosition] : prevTileY = null;
+
     if(inMisses(nextTileY) && inMisses(prevTileY)){
         horizontal = true;
-    };     
+    };   
+    //  IF GUESSING HORIZONTALLY  
     if(horizontal){
         if(isTd(prevTileX) && tilesLeft.includes(prevTileX)){
             guess = prevTileX;
@@ -35,6 +37,7 @@ const continueHitStreakGuess = tile => tilesLeft => arr => {
             return guess;
         };
     }
+    //  IF GUESSING VERTICALLY
     else {
         if(isTd(prevTileY) && tilesLeft.includes(prevTileY)){
             guess = prevTileY;
@@ -46,7 +49,6 @@ const continueHitStreakGuess = tile => tilesLeft => arr => {
         }
         else {
             tilesLeft.includes(nextTileX) ? guess = nextTileX : tilesLeft.includes(prevTileX) ? guess = prevTileX : guess = tilesLeft[randomIndex(tilesLeft)];
-
             return guess;
         };
     };
@@ -60,39 +62,22 @@ const guessAfterHit = tilesLeft => tile => {
             let nextTileY;  
             tile.parentElement.nextElementSibling ? nextTileY = tile.parentElement.nextElementSibling.children[childPosition] : nextTileY = null;
             let prevTileY;
-            // tile.parentElement.nextElementSibling ? prevTileY = tile.parentElement.previousElementSibling.children[childPosition] : prevTileY = null;
             tile.parentElement.previousElementSibling ? prevTileY = tile.parentElement.previousElementSibling.children[childPosition] : prevTileY = null;
-            //IF NO HIT STREAK BUT 1ST HIT
-            // if(inHits(nextTileX) || inHits(prevTileX)){
-                //stay horizontal
-                if(isTd(prevTileX) && tilesLeft.includes(prevTileX)){
-                    guess = prevTileX;
-                    return guess;
-                }
-                else if(isTd(nextTileX) && tilesLeft.includes(nextTileX)){
-                    guess = nextTileX;
-                    return guess;
-                }
-                // else guess = nextTileY || prevTileY || tilesLeft[randomIndex(tilesLeft)];  
-                else {
-                    tilesLeft.includes(nextTileY) ? guess = nextTileY : tilesLeft.includes(prevTileY) ? guess = prevTileY : tilesLeft[randomIndex(tilesLeft)];
-                    return guess;
-                }
+            //  IF TILE TO LEFT AVAILABLE RETURN TILE
+            if(isTd(prevTileX) && tilesLeft.includes(prevTileX)){
+                guess = prevTileX;
+                return guess;
+            }
+            //  ELSE RETURN TILE TO RIGHT
+            else if(isTd(nextTileX) && tilesLeft.includes(nextTileX)){
+                guess = nextTileX;
+                return guess;
+            }  
+            //  IF NEITHER, RETURN NEXT TILE UP, NEXT TILE DOWN OR A RANDOM TILE
+            else {
+                tilesLeft.includes(nextTileY) ? guess = nextTileY : tilesLeft.includes(prevTileY) ? guess = prevTileY : tilesLeft[randomIndex(tilesLeft)];
+                return guess;
+            };
     };
-            // }
-            //IF NO PREVIOUS HORIZONTAL SWAYING GUESSES, GUESS VERTICAL
-            // if(!inHits(nextTileY) || !inHits(prevTileY)){
-                //go vertical
-//                 if(isTd(prevTileY) && tilesLeft.includes(prevTileY)){
-//                     guess = prevTileY;
-//                     return guess;
-//                 }
-//                 else if(isTd(nextTileY) && tilesLeft.includes(nextTileY)){
-//                     guess = nextTileY;
-//                     return guess;
-//                 }
-//                 else guess = nextTileX || prevTileX || tilesLeft[randomIndex()];
-//          };  
-// }       
 
 export { guessAfterHit, continueHitStreakGuess };

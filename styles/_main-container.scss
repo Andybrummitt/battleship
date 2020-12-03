@@ -40,13 +40,13 @@
 #ui-controls {
     background: linear-gradient(-160deg, transparent 12.5%, $container-color 12.5%);
     position: relative;
+    @include flexCenter(column);
     #guess-form {
         @include flexCenter(column);
         font-size: 1.5em;
         font-family: sans-serif;
-        position: absolute;
-        top: 30%;
-        width: 100%;
+        margin-top: 8em;
+        margin-bottom: 2em;
         text-align: center;
         input {
             font-size: 1.5em;
@@ -140,3 +140,26 @@ table {
     align-items: center;
 }
 
+#ai-ships-left {
+    @include flexCenter(column);
+    width: 80%;
+    text-align: center;
+    h3 {
+        text-align: center;
+        font-size: 2rem;
+    }
+    ul {
+        @include flexCenter(column);
+        list-style-type: none;
+        width: 80%;
+        padding: 0;
+        li {
+            font-size: 1.2rem;
+            background: #fafafa;
+            margin: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            width: 60%;
+        }
+    }
+} 

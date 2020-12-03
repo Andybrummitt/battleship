@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -65,9 +61,18 @@
                 <input type="text" id="guess-input" maxlength="3">
                 <button type="submit" id="submit-btn">Submit Guess</button>
             </form>
+            <div id="ai-ships-left" class="hide">
+                <h3>Opponent's ships left</h3>
+                <ul>
+                    <li>Destroyer</li>
+                    <li>Submarine</li>
+                    <li>Cruiser</li>
+                    <li>Battleship</li>
+                    <li>Carrier</li>
+                </ul>
+            </div>
         </section>
         </div>
-        <!-- class="hide" -->
         <div id="notification-container" >
             <div id="notification-box" class="hide">
                 <h1 id="notification-title">notificationbox</h1>

@@ -1,29 +1,27 @@
 "use strict";
 
-import createGrid from './create-grid.js';
-import getShips from './get-ships.js';
+import './create-grid.js';
+import './get-ships.js';
 import shipBtnClickListener from './handle-ship-setup.js';
-import { ai, user } from './players-objs.js';
+import { user } from './players-objs.js';
 import domObj from './dom-obj.js';
-import shipState from './ship-state.js';
-import { aiGridTds } from './ai-tiles-setup.js';
+import './ship-state.js';
+import './ai-tiles-setup.js';
 import './ai-turn-algorithm.js';
-import { addClassToElem } from './game-notifications.js';
-import { setUpGame } from './play-game.js';
+import './game-notifications.js';
+import './play-game.js';
 import './wave-animation.js';
 import './make-ship-shape.js';
 import './hover-effect.js';
 
-// const shipsSelectedUl = document.querySelector('#ships-selected-ul');
-const cannonballLeft = document.querySelector('#header-cannonball-1');
 const title = document.querySelector('#game-title');
 const titleImg = document.querySelector('#behind-title-img');
 
+//  JUST BEFORE CANNONBALL ANIMATION ENDS STYLE TITLE
 const addTitleStyles = () => {
     setTimeout(() => {
         titleImg.classList.remove('hide');
         title.style.opacity = '1';
-
     }, 1000)
 }
 
