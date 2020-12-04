@@ -20,10 +20,27 @@ $container-color: #f2f2f2;
 $main-font: 'Big Shoulders Stencil Text', cursive;
 $notification-font: 'Teko', sans-serif;
 
-/*  ----------------------  FILE IMPORTS ---------------------- */
 :root {
     font-family: $main-font;
 }
+@media only screen and (max-width: 1200px) {
+    :root {
+        font-size: 0.8rem;
+    }
+}
+@media only screen and (max-width: 600px) {
+    :root {
+        font-size: 0.6em;
+    }
+}
+@media only screen and (max-width: 450px){
+    :root {
+        font-size: 0.5em;
+    }
+}
+
+
+/*  ----------------------  FILE IMPORTS ---------------------- */
 
 @import "./header";
 @import "./main-container";
@@ -56,19 +73,21 @@ button {
 
 .hover-ship-div {
     text-align: center;
-    border: 3px solid black;
-    border-radius: 0.5em;
+    border: 0.2rem solid black;
     background: white;
     opacity: 0.75;
     position: absolute;
+    line-height: 0.5rem;
     z-index: 4;
     list-style-type: none;
-    padding: 0.5em;
+    padding: 0.3em;
+    margin: 0;
     font-family: $notification-font;
 }
 
 .crossed-out {
     text-decoration: line-through red;
+    text-decoration-thickness: 0.2rem;
 }
 
 /*  ----------------------  MISS STYLING ------------------- */
@@ -77,6 +96,12 @@ button {
     font-size: 1.8em;
     color: red;
     font-family: 'Questrial', sans-serif;    
+}
+
+@media screen and (max-width: 1200px){
+    .miss {
+        font-size: 1.2em;
+    }
 }
 
 .ship-sunk {
@@ -137,430 +162,11 @@ button {
         top: 10%;
     }
 
-    /* Extra small devices (phones, up to 449px) */
-@media only screen and (max-width: 449px){
-    :root {
-        font-size: 0.5em;
-    }
-    #notification-container {
-        position: absolute;
-        width: 40vw;
-        h1 {
-            font-size: 2em;
+    @media screen and (max-width: 800px){
+        #notification-container {
+            width: 45vw;
         }
     }
-    .miss {
-        font-size: 1.2em;
-    }
-    #submit-btn {
-            font-size: 1em !important;
-        }
-    .container {
-        display: grid;
-        grid-template-columns: 35% 30% 35%;
-        grid-template-rows: 33% 33% 33%;
-        grid-template-areas: 
-        "player-grid player-grid ui-controls"
-        "player-grid player-grid ui-controls"
-        "ai-grid ai-grid ai-grid";
-        background: white;
-    }
-    
-    #ai-grid-container {
-        grid-area: ai-grid;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-        width: 70vw;
-        background: white;
-        table {
-            font-size: 0.3em;
-            justify-self: flex-start;
-            width: 35vw; 
-            height: 35vw;
-        }
-    }
-
-    #ai-ships-left {
-        h3 {
-            font-size: 1.5rem;
-        }
-        ul {
-            li {
-                font-size: 0.8rem;
-            }
-        } 
-    }
-
-    #player-grid-container {
-        grid-area: player-grid;
-        background: $container-color;
-        @include flexCenter(column);
-        border-right: 0.7em solid white; 
-        table {
-            width: 50vw;
-            height: 50vw;
-        }
-    }
-    #ui-controls {
-        grid-area: ui-controls;
-        background: $container-color;
-        #guess-form {
-            margin-top: 5em;
-            margin-bottom: 1em;
-        }
-    }
-    #ship-setup-container {
-        font-size: 1.2em;
-    }
-    .ship-img {
-        height: 10em;
-        width: 10em;
-        position: absolute;
-    }
-    #ship-1 {
-        left: 2%;
-        top: 5%;
-        transform: rotate(10deg);
-    }
-    #ship-2 {
-        right: 2%;
-        top: 5%;
-        transform: scaleX(-1) rotate(10deg);
-    }
-    #header-cannonball-1 {
-        display: none;
-    }
-    #header-cannonball-2 {
-        display: none;
-    }
-}
-
-/* Small devices (phones, 450px to 599px) */
-@media only screen and (min-width: 450px) and (max-width: 599px) {
-    :root {
-        font-size: 0.6em;
-    }
-    #notification-container {
-        position: absolute;
-        width: 40vw;
-        h1 {
-            font-size: 2em;
-        }
-    }
-    .miss {
-        font-size: 1.2em;
-    }
-    #submit-btn {
-            font-size: 1em !important;
-        }
-    .container {
-        display: grid;
-        grid-template-columns: 35% 30% 35%;
-        grid-template-rows: 33% 33% 33%;
-        grid-template-areas: 
-        "player-grid player-grid ui-controls"
-        "player-grid player-grid ui-controls"
-        "ai-grid ai-grid ai-grid";
-        background: white;
-    }
-    
-    #ai-grid-container {
-        grid-area: ai-grid;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-        width: 70vw;
-        background: white;
-        table {
-            font-size: 0.3em;
-            justify-self: flex-start;
-            width: 28vw; 
-            height: 28vw;
-        }
-    }
-
-    #player-grid-container {
-        grid-area: player-grid;
-        background: $container-color;
-        @include flexCenter(column);
-        border-right: 0.7em solid white; 
-        table {
-            width: 50vw;
-            height: 50vw;
-        }
-    }
-    #ui-controls {
-        grid-area: ui-controls;
-        background: $container-color;
-    }
-    #ship-setup-container {
-        font-size: 1.2em;
-    }
-    .ship-img {
-        height: 15em;
-        width: 15em;
-        position: absolute;
-    }
-    #ship-1 {
-        left: 2%;
-        top: 5%;
-        transform: rotate(10deg);
-    }
-    #ship-2 {
-        right: 2%;
-        top: 5%;
-        transform: scaleX(-1) rotate(10deg);
-    }
-    #header-cannonball-1 {
-        display: none;
-    }
-    #header-cannonball-2 {
-        display: none;
-    }
-}
-
-/* Small devices (portrait tablets and large phones, 600px to 768px) */
-@media only screen and (min-width: 600px) and (max-width: 768px) {
-    :root {
-        font-size: 0.8rem;
-    }
-    #notification-container {
-        position: absolute;
-        width: 40vw;
-        h1 {
-            font-size: 2em;
-        }
-    }
-    .miss {
-        font-size: 1.2em;
-    }
-    #submit-btn {
-            font-size: 1em !important;
-        }
-    .container {
-        display: grid;
-        grid-template-areas: 
-        "player-grid player-grid ui-controls"
-        "ai-grid ai-grid ai-grid";
-        background: white;
-    }
-    
-    #ai-grid-container {
-        grid-area: ai-grid;
-        justify-items: flex-start;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-        height: 100%;
-        width: 100%;
-        background: white;
-        table {
-            font-size: 1rem;
-            justify-self: flex-start;
-            width: 35vw; 
-            height: 35vw;
-        }
-    }
-    #player-grid-container {
-        grid-area: player-grid;
-        background: $container-color;
-        align-self: flex-start;
-        border-right: 0.7rem solid white;
-        height: 52vh;
-        table {
-            width:50vw;
-            height: 50vw;
-        }
-    }
-    #ui-controls {
-        height: 52vh;
-        grid-area: ui-controls;
-        background: $container-color;
-        #guess-form {
-            margin-top: 4em;
-            margin-bottom: 1em;
-        }
-    }
-
-    #ship-setup-container {
-        font-size: 1em;
-    }
-    .ship-img {
-        height: 10em;
-        width: 10em;
-        position: absolute;
-    }
-    #header-cannonball-1 {
-        display: none;
-    }
-    #header-cannonball-2 {
-        display: none;
-    }
-}
-
-/* Medium devices (landscape tablets, 769px to 992px) */
-@media only screen and (min-width: 769px) and (max-width: 992px) {
-:root {
-    font-size: 0.8rem;
-}
-#notification-container {
-    position: absolute;
-    width: 40vw;
-    h1 {
-        font-size: 2em;
-    }
-}
-.miss {
-    font-size: 1.2em;
-}
-.container {
-    display: grid;
-    grid-template-areas: 
-    "player-grid player-grid ui-controls"
-    "ai-grid ai-grid ai-grid";
-    background: white;
-}
-
-#ai-grid-container {
-    grid-area: ai-grid;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    height: 100%;
-    width: 100%;
-    background: white;
-    table {
-        font-size: 1rem;
-        justify-self: flex-start;
-        width: 35vw; 
-        height: 35vw;
-    }
-}
-#player-grid-container {
-    grid-area: player-grid;
-    background: $container-color;
-    align-self: flex-start;
-    border-right: 0.7rem solid white;
-    height: 52vh;
-    table {
-        width:40vw;
-        height: 40vw;
-    }
-}
-#ui-controls {
-    height: 52vh;
-    grid-area: ui-controls;
-    background: $container-color;
-}
-#ship-setup-container {
-    font-size: 1em;
-}
-.ship-img {
-    height: 10em;
-    width: 10em;
-    position: absolute;
-}
-
-#ship-1, #ship-2 {
-    top: 5%;
-    }
-}
-
-// /* Large devices (laptops/desktops, 993px and up) */
-@media only screen and (min-width: 993px) and (max-width: 1199px) {
-    :root {
-        font-size: 0.8rem;
-    }
-    #notification-container {
-        position: absolute;
-        width: 40vw;
-        h1 {
-            font-size: 3em;
-        }
-    }
-    .miss {
-        font-size: 1.3em;
-    #ai-grid {
-        font-size: 0.8rem;
-        width: 20vw;
-        height: 20vw;
-        td {
-            font-size: 0.5rem;
-            }
-        }
-    }
-    .container {
-        display: grid;
-        grid-template-areas: 
-        "player-grid player-grid ui-controls"
-        "ai-grid ai-grid ai-grid";
-        background: white;
-    }
-
-    #ai-grid-container {
-        grid-area: ai-grid;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-        height: 100%;
-        width: 100%;
-        background: white;
-        table {
-            font-size: 1rem;
-            justify-self: flex-start;
-            width: 35vw; 
-            height: 35vw;
-        }
-    }
-    #player-grid-container {
-        grid-area: player-grid;
-        background: $container-color;
-        align-self: flex-start;
-        border-right: 0.7rem solid white;
-        height: 52vh;
-        table {
-            width:40vw;
-            height: 40vw;
-        }
-    }
-    #ui-controls {
-        height: 52vh;
-        grid-area: ui-controls;
-        background: $container-color;
-    }
-    #ship-setup-container {
-        font-size: 1em;
-    }
-    .ship-img {
-        height: 15em;
-        width: 15em;
-        position: absolute;
-    }
-
-    #ship-1, #ship-2 {
-        top: 6%;
-    }
-
-    #submit-btn {
-        width: 80% !important;
-    }
-}
-
-/* Extra large devices (medium laptops and desktops, 1200px to 1499px) */
-@media only screen and (min-width: 1201px) and (max-width: 1499px) {
-    .ship-img {
-        height: 15em;
-        width: 15em;
-        position: absolute;
-    }
-
-    #ship-1, #ship-2 {
-        top: 6%;
-    }
-
-}
-    
 
 
 

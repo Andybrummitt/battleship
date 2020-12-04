@@ -68,7 +68,6 @@ const colorShipSunk = shipTiles => {
             if(!grandChild.classList.contains('text-div')){
                 if(grandChild.classList.contains('ship-set')){
                     grandChild.classList.add('ship-sunk');
-                    console.log(grandChild)
                 }
                 else {
                     grandChild.className = '';

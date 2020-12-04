@@ -17,7 +17,7 @@ const createHoverDiv = ({ target, clientX, clientY }) => {
         const shipType = hoveredShip;
         //  ADD CONTENT TO ELEMENTS
         hoverShipDiv.innerHTML = `<h1>${tilePosition}: ${shipType.name}</h1> 
-        <p>Holes in ship: ${hoveredShip.holes} </p>`;
+        <p>Holes in ship: ${hoveredShip.holes} / ${hoveredShip.numTiles} </p>`;
         //  POSITION DIV
         if(hoverShipDiv.classList.contains('hide')){
             hoverShipDiv.classList.remove('hide')

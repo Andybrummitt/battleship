@@ -7,8 +7,16 @@ header {
 #vector-credit {
     position: absolute;
     top: 1%;
+    left: 20%;
+}
+
+@media screen and (max-width: 1200px){
+#vector-credit {
     left: 1%;
 }
+}
+
+/*  ----------------------  TITLE ------------------------*/
 
 #game-title {
     text-align: center;
@@ -30,12 +38,47 @@ header {
     box-shadow: 0 0 30px 30px lightgray;
 }
 
+@media screen and (max-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+    #game-title {
+        font-size: 3em;
+    }
+    #behind-title-img {
+        display: none;
+    }
+}
+
+/*  ----------------------  SHIP IMG ------------------------*/
+
 .ship-img {
-    height: 20em;
-    width: 20em;
+    height: 15vw;
+    width: 15vw;
     position: absolute;
 }
 
+@media only screen and (max-width: 1200px){
+    .ship-img {
+        height: 10em;
+        width: 10em;
+        position: absolute;
+    }
+}
+@media only screen and (max-width: 900px) and (max-height: 500px) and (orientation: landscape){
+    .ship-img {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .ship-img {
+        height: 10em;
+        width: 10em;
+    }
+}
+@media only screen and (max-width: 450px){
+    .ship-img {
+        display: none;
+        }
+}
 /*  ---------------------    LEFT SIDE SHIP ANIMATION --------------------------    */
 
 #ship-1 {
@@ -123,3 +166,31 @@ header {
         transform: translateY(-4vw)
     }
 }
+
+@media only screen and (max-width: 1500px){
+    #ship-1, #ship-2 {
+        top: 6%;
+    }
+}
+@media only screen and (max-width: 900px) and (max-height: 500px) and (orientation: landscape){
+    #header-cannonball-1, #header-cannonball-2 {
+        display: none;
+    }
+}
+@media only screen and (max-width: 768px){
+    #header-cannonball-1, #header-cannonball-2 {
+        display: none;
+    }
+}
+@media only screen and (max-width: 600px){
+    #ship-1, #ship-2 {
+        top: 5%;
+    }
+    #header-cannonball-1, #header-cannonball-2 {
+        display: none;
+    }
+}
+
+
+
+
