@@ -19,7 +19,7 @@ const changeNotifBody = (title) => {
 };
 
 
-const notification = argsForCb => tile => async isAnimated => {
+const notification = isAnimated => argsForCb => async tile => {
     //  ISANIMATED = HITS OR MISSES (WHERE CANNONBALL ANIMATION HAPPENS) 
     changeNotifBody(argsForCb)
     if(isAnimated){
@@ -42,6 +42,9 @@ const notification = argsForCb => tile => async isAnimated => {
     };
 };
 
+const animatedNotification = notification(true);
+const unanimatedNotification = notification(false);
+
 //  SHOW VICTORY OR DEFEAT MESSAGE ON GAME END
 const gameOverNotification = msg => {
     const gameOverNotification = document.createElement('h1');
@@ -53,4 +56,4 @@ const gameOverNotification = msg => {
     container.append(gameOverNotificationContainer);
 };
 
-export { notification, changeNotifBody, addClassToElem, removeClassFromElem, gameOverNotification };
+export { animatedNotification, unanimatedNotification, notification, changeNotifBody, addClassToElem, removeClassFromElem, gameOverNotification };

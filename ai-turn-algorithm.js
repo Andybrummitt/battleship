@@ -19,7 +19,7 @@ export const isTd = elem => {
     return elem.nodeName === 'TD'; 
 } 
 
-export const handleTurn = () => {
+export const handleAITurn = () => {
     let guess;
     const prevTurns = turns.hits.concat(turns.misses);
     const tilesLeft = [...playerGridTds].filter(td => !prevTurns.includes(td));

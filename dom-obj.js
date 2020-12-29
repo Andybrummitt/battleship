@@ -9,7 +9,7 @@ const domObj = {
     notifText: document.querySelector('#notification-text'),
     shipBtnsContainer: document.querySelector('#ship-setup-container'),
     guessForm: document.querySelector('#guess-form'),
-    guessInput: document.querySelector('#guess-input'),
+    guessInputField: document.querySelector('#guess-input'),
     submitBtn: document.querySelector('#submit-btn'),
     aiShipsLeftDiv: document.querySelector('#ai-ships-left'),
     getTds: grid => {
