@@ -5,9 +5,9 @@ const AIturnsTracker = {
     lastHit: null,
     hitStreakX: [],
     hitStreakY: [],
-    getHitStreakArray: () => {
+    getHitStreakArray: function(){
         //  IF THERE IS NO 2+ HITSTREAK ARRAY, RETURN FALSE
-        if(AIturnsTracker.hitStreakX.every(arr => arr.length < 2) && AIturnsTracker.hitStreakY.every(arr => arr.length < 2)){
+        if(this.hitStreakX.every(arr => arr.length < 2) && this.hitStreakY.every(arr => arr.length < 2)){
             return false;
         }
         else {
@@ -15,13 +15,13 @@ const AIturnsTracker = {
             let verticalArr = [];
 
             //  FIND LONGEST HIT STREAKS
-            for(let arr of AIturnsTracker.hitStreakX){
-                if(arr.includes(AIturnsTracker.lastHit) && arr.length > horizontalArr.length){
+            for(let arr of this.hitStreakX){
+                if(arr.includes(this.lastHit) && arr.length > horizontalArr.length){
                     horizontalArr = arr;
                 };
             };
-            for(let arr of AIturnsTracker.hitStreakY){
-                if(arr.includes(AIturnsTracker.lastHit) && arr.length > verticalArr.length){
+            for(let arr of this.hitStreakY){
+                if(arr.includes(this.lastHit) && arr.length > verticalArr.length){
                     verticalArr = arr;
                 };
             };
@@ -29,9 +29,9 @@ const AIturnsTracker = {
             return horizontalArr.length > verticalArr.length ? horizontalArr : verticalArr;
         };
     },
-    clearArrays: () => {
-        AIturnsTracker.hitStreakX = [];
-        AIturnsTracker.hitStreakY = [];
+    clearArrays: function(){
+        this.hitStreakX = [];
+        this.hitStreakY = [];
     }
 };
 
