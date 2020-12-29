@@ -7,6 +7,7 @@ import setShipTiles from './make-ship-shape.js';
 import setShipStyles from './make-ship-shape.js';
 import { createHoverDiv } from './hover-effect.js';
 
+
 const { hoverShipDiv } = domObj;
 
 //  REMOVE ALL CHILD CLASSNAMES THAT INCLUDE SHIP STYLING

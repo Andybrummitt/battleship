@@ -64,6 +64,8 @@ const clearArray = arr => {
     return arr;
 };
 
+const compose2 = (fn1, fn2) => args => fn2(fn1(args));
+
 export { 
     addHoleToShip, 
     shipSunk, 
@@ -78,5 +80,6 @@ export {
     removeEmptyArrays,
     colorTileHit,
     colorTileMiss,
-    shipSet
+    shipSet,
+    compose2
 };
