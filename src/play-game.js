@@ -43,15 +43,15 @@ const gameTurn = async e => {
         clearInputAndDisableGuessBtn(submitBtn)(guessInputField);
 
         //  CALL PLAYER TURN FUNCTIONS
-        await playerTurn(guess, playerGuessTile, aiTilesPositionsArr);
+        const playerTurnWins = await playerTurn(guess, playerGuessTile, aiTilesPositionsArr);
         //  IF PLAYER WINS - RETURN
-        if(playerTurn){
+        if(playerTurnWins){
             submitBtn.disabled = false;
             guessInputField.disabled = false;
             return;
         }
         const AIguessTile = handleAITurn();
-        await AIturn(AIguessTile, userTilesPositionsArr);
+        const AIwins = await AIturn(AIguessTile, userTilesPositionsArr);
 
         //  AFTER EACH PLAYER HAS TURN
         submitBtn.disabled = false;
@@ -59,7 +59,7 @@ const gameTurn = async e => {
         playerGuesses.push(playerGuessTile); 
 
         //  IF AI WINS - RETURN
-        if(AIturn){
+        if(AIwins){
             return;
         }
 
