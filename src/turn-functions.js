@@ -10,7 +10,7 @@ const playerTurn = async (guess, playerGuessTile, aiTilesPositionsArr) => {
         if(isHit(guess)(aiTilesPositionsArr)){
             //  STYLE HIT TILE AND REMOVE FROM TILES ARR
             animateHitAIGrid(playerGuessTile);
-            await animatedNotification(`${guess}: Hit!`)(playerGuessTile);   
+            await animatedNotification(`You guessed ${guess}: Hit!`)(playerGuessTile);   
             removeHitTile(aiTilesPositionsArr)(playerGuessTile);
             const shipHit = addHoleToShip(ai.ships)(playerGuessTile);
             //  IF USER SINKS AI SHIP
@@ -29,7 +29,7 @@ const playerTurn = async (guess, playerGuessTile, aiTilesPositionsArr) => {
         //  IF MISS
         else {
             animateMiss(playerGuessTile);
-            await animatedNotification(`${guess}: Miss!`)(playerGuessTile);
+            await animatedNotification(`You guessed ${guess}: Miss!`)(playerGuessTile);
         };
 }
 
@@ -40,7 +40,7 @@ const AIturn = async (AIguessTile, userTilesPositionsArr) => {
     if(isHit(AIguessTileGridPosition)(userTilesPositionsArr)){
         addHitInfoToTracker(AIguessTile);
         animateHitPlayerGrid(AIguessTile);
-        await animatedNotification(`${AIguessTileGridPosition}: Hit!`)(AIguessTile);   
+        await animatedNotification(`AI guessed ${AIguessTileGridPosition}: Hit!`)(AIguessTile);   
         removeHitTile(userTilesPositionsArr)(AIguessTile);
         const shipHit = addHoleToShip(user.ships)(AIguessTile);
         //  IF AI SINKS USER SHIP
@@ -62,7 +62,7 @@ const AIturn = async (AIguessTile, userTilesPositionsArr) => {
     else {
         AIturnsTracker.misses.push(AIguessTile);
         animateMiss(AIguessTile)
-        await animatedNotification(`${AIguessTileGridPosition}: Miss!`)(AIguessTile);
+        await animatedNotification(`AI guessed ${AIguessTileGridPosition}: Miss!`)(AIguessTile);
     };
 } 
 

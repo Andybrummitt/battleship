@@ -1,5 +1,4 @@
-"use strict";
-
+import './styles/main.scss';
 import './create-grid.js';
 import './get-ships.js';
 import shipBtnClickListener from './handle-ship-setup.js';
