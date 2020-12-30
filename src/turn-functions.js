@@ -7,6 +7,7 @@ import { sinkShip, lineThroughAIshipsLeft, clearHitStreakArr, addHitInfoToTracke
 
 const playerTurn = async (guess, playerGuessTile, aiTilesPositionsArr) => {
     //  IF HIT
+        let isVictory;
         if(isHit(guess)(aiTilesPositionsArr)){
             //  STYLE HIT TILE AND REMOVE FROM TILES ARR
             animateHitAIGrid(playerGuessTile);
@@ -22,7 +23,7 @@ const playerTurn = async (guess, playerGuessTile, aiTilesPositionsArr) => {
                 //  IF GAME OVER
                 if(wonGame(ai.ships)){
                     gameOverNotification('VICTORY');
-                    return;
+                    isVictory = true;
                 };
             };
         }
@@ -31,9 +32,14 @@ const playerTurn = async (guess, playerGuessTile, aiTilesPositionsArr) => {
             animateMiss(playerGuessTile);
             await animatedNotification(`You guessed ${guess} : Miss!`)(playerGuessTile);
         };
+        if(isVictory){
+            return true;
+        }
+        return false;
 }
 
 const AIturn = async (AIguessTile, userTilesPositionsArr) => {
+    let isVictory;
     await unanimatedNotification(`AI turn`)('');
     const AIguessTileGridPosition = AIguessTile.firstElementChild.firstElementChild.textContent;
     //  IF AI HIT
@@ -54,7 +60,7 @@ const AIturn = async (AIguessTile, userTilesPositionsArr) => {
                 const AIshipsLeft = aiTilesPositionsArr.filter(tile => !playerGuesses.includes(tile));
                 AIshipsLeft.forEach(tile => tile.style.background = '#4d94ff');
                 gameOverNotification('DEFEAT');
-                return;
+                isVictory = true;
             };
         };
     }
@@ -64,6 +70,10 @@ const AIturn = async (AIguessTile, userTilesPositionsArr) => {
         animateMiss(AIguessTile)
         await animatedNotification(`AI guessed ${AIguessTileGridPosition} : Miss!`)(AIguessTile);
     };
+    if(isVictory){
+        return true;
+    }
+    return false;
 } 
 
 export { playerTurn, AIturn };

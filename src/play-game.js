@@ -44,6 +44,12 @@ const gameTurn = async e => {
 
         //  CALL PLAYER TURN FUNCTIONS
         await playerTurn(guess, playerGuessTile, aiTilesPositionsArr);
+        //  IF PLAYER WINS - RETURN
+        if(playerTurn){
+            submitBtn.disabled = false;
+            guessInputField.disabled = false;
+            return;
+        }
         const AIguessTile = handleAITurn();
         await AIturn(AIguessTile, userTilesPositionsArr);
 
@@ -51,6 +57,11 @@ const gameTurn = async e => {
         submitBtn.disabled = false;
         guessInputField.disabled = false;
         playerGuesses.push(playerGuessTile); 
+
+        //  IF AI WINS - RETURN
+        if(AIturn){
+            return;
+        }
 
         //  CHECK AI HITSTREAK AND REMOVE DEAD STREAKS
         let { hitStreakX, hitStreakY } = AIturnsTracker;
