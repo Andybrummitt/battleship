@@ -10,7 +10,7 @@ const playerTurn = async (guess, playerGuessTile, aiTilesPositionsArr) => {
         if(isHit(guess)(aiTilesPositionsArr)){
             //  STYLE HIT TILE AND REMOVE FROM TILES ARR
             animateHitAIGrid(playerGuessTile);
-            await animatedNotification(`You guessed ${guess}: Hit!`)(playerGuessTile);   
+            await animatedNotification(`You guessed ${guess} : Hit!`)(playerGuessTile);   
             removeHitTile(aiTilesPositionsArr)(playerGuessTile);
             const shipHit = addHoleToShip(ai.ships)(playerGuessTile);
             //  IF USER SINKS AI SHIP
@@ -18,7 +18,7 @@ const playerTurn = async (guess, playerGuessTile, aiTilesPositionsArr) => {
                 lineThroughAIshipsLeft(shipHit);
                 //  COLOR SHIP RED
                 sinkShip(shipHit, colorAItilePositionsSunk)
-                await unanimatedNotification(`${shipHit.name}: Sunk!`)(playerGuessTile);
+                await unanimatedNotification(`${shipHit.name} : Sunk!`)(playerGuessTile);
                 //  IF GAME OVER
                 if(wonGame(ai.ships)){
                     gameOverNotification('VICTORY');
@@ -29,7 +29,7 @@ const playerTurn = async (guess, playerGuessTile, aiTilesPositionsArr) => {
         //  IF MISS
         else {
             animateMiss(playerGuessTile);
-            await animatedNotification(`You guessed ${guess}: Miss!`)(playerGuessTile);
+            await animatedNotification(`You guessed ${guess} : Miss!`)(playerGuessTile);
         };
 }
 
@@ -40,14 +40,14 @@ const AIturn = async (AIguessTile, userTilesPositionsArr) => {
     if(isHit(AIguessTileGridPosition)(userTilesPositionsArr)){
         addHitInfoToTracker(AIguessTile);
         animateHitPlayerGrid(AIguessTile);
-        await animatedNotification(`AI guessed ${AIguessTileGridPosition}: Hit!`)(AIguessTile);   
+        await animatedNotification(`AI guessed ${AIguessTileGridPosition} : Hit!`)(AIguessTile);   
         removeHitTile(userTilesPositionsArr)(AIguessTile);
         const shipHit = addHoleToShip(user.ships)(AIguessTile);
         //  IF AI SINKS USER SHIP
         if(shipSunk(shipHit)){
             sinkShip(shipHit, colorShipSunk);
             clearHitStreakArr(shipHit);
-            await unanimatedNotification(`${shipHit.name}: Sunk!`)(AIguessTile);
+            await unanimatedNotification(`${shipHit.name} : Sunk!`)(AIguessTile);
             //  IF AI WINS
             if(wonGame(user.ships)){
                 //  SHOW USER WHICH AI SHIPS LEFT
@@ -62,7 +62,7 @@ const AIturn = async (AIguessTile, userTilesPositionsArr) => {
     else {
         AIturnsTracker.misses.push(AIguessTile);
         animateMiss(AIguessTile)
-        await animatedNotification(`AI guessed ${AIguessTileGridPosition}: Miss!`)(AIguessTile);
+        await animatedNotification(`AI guessed ${AIguessTileGridPosition} : Miss!`)(AIguessTile);
     };
 } 
 

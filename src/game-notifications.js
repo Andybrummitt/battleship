@@ -18,7 +18,6 @@ const changeNotifBody = (title) => {
     notifTitle.textContent = title;
 };
 
-
 const notification = isAnimated => argsForCb => async tile => {
     //  ISANIMATED = HITS OR MISSES (WHERE CANNONBALL ANIMATION HAPPENS) 
     changeNotifBody(argsForCb)
@@ -32,14 +31,13 @@ const notification = isAnimated => argsForCb => async tile => {
             });
     }
     else {
-        // SLEEP 1 SECOND
+        //  SLEEP 2 SECONDS
         removeClassFromElem(notifBox)('hide');
-        await new Promise(resolve => setTimeout(() => {
-            resolve();
-        }, 1000));
+        await new Promise(resolve => setTimeout(() => resolve(), 2000));
         addClassToElem(notifBox)('hide');
-        return;
     };
+    //  SLEEP 0.5 SECONDS
+    await new Promise(resolve => setTimeout(() => resolve(), 500));
 };
 
 const animatedNotification = notification(true);
