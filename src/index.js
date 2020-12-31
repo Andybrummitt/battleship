@@ -1,5 +1,3 @@
-alert('testing')
-
 import './styles/main.scss';
 import './create-grid.js';
 import './get-ships.js';
@@ -27,8 +25,6 @@ const addTitleStyles = () => {
 }
 
 Window.onload = addTitleStyles();
-
-alert('testing')
 
 const createShipButtons = ships => ships.forEach(ship => {
     const btn = document.createElement('button');

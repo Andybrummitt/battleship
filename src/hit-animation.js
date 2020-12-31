@@ -22,7 +22,7 @@ const cannonballAnimation = tile => {
 };
 
 const fireAnimation = tile => {
-    const tileDivs = [...tile.firstElementChild.children];
+    const tileDivs = Array.from(tile.firstElementChild.children);
     const [div1, div2, div3, div4, div5] = tileDivs;
 
     tileDivs.forEach(div => {
@@ -64,7 +64,7 @@ const animateMiss = tile => {
 const colorShipSunk = shipTiles => {
     //  REMOVE CLASSES OF ALL CHILDREN
     shipTiles.forEach(tile => {
-        [...tile.firstElementChild.children].forEach(grandChild => {
+        Array.from(tile.firstElementChild.children).forEach(grandChild => {
             if(!grandChild.classList.contains('text-div')){
                 if(grandChild.classList.contains('ship-set')){
                     grandChild.classList.add('ship-sunk');

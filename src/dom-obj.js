@@ -13,9 +13,9 @@ const domObj = {
     submitBtn: document.querySelector('#submit-btn'),
     aiShipsLeftDiv: document.querySelector('#ai-ships-left'),
     getTds: grid => {
-        return [...grid.lastElementChild.children]
+        return Array.from(grid.lastElementChild.children)
         .filter(child => child.nodeName === 'TR')
-        .map(tr => [...tr.children]
+        .map(tr => Array.from(tr.children)
         .filter(trChild => trChild.nodeName === 'TD'))
         .flat();
     },

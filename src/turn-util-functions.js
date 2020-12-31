@@ -131,7 +131,7 @@ const clearHitStreakArr = shipHit => {
 //  WHEN SHIP SUNK, PUT LINE THROUGH SHIPS LEFT DIV SHIP NAME
 const lineThroughAIshipsLeft = shipHit => {
     const ul = aiShipsLeftDiv.lastElementChild;
-    [...ul.children].forEach(li => {
+    Array.from(ul.children).forEach(li => {
         if(li.textContent === shipHit.name){
             li.className = 'crossed-out';
         };

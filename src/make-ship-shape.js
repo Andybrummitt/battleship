@@ -8,7 +8,7 @@ const makeShipShape = tiles => ship => isActive => {
     
     //  IF SHIP HAS > 2 TILES ADD BODY STYLING
     if(tiles.length > 2){
-        shipBodyTiles = [...tiles].splice(1, tiles.length-2);
+        shipBodyTiles = Array.from(tiles).splice(1, tiles.length-2);
         shipBodyTiles.forEach(bodyTile => {
             bodyTile.firstElementChild.children[lastDivPosition].classList.add(`ship-body-${direction}`);
             if(isActive){
