@@ -26,13 +26,15 @@ const addTitleStyles = () => {
 
 Window.onload = addTitleStyles();
 
+alert('testing')
+
 const createShipButtons = ships => ships.forEach(ship => {
     const btn = document.createElement('button');
     btn.textContent = ship.name;
     btn.className = 'ship-select-btn';
-    // btn.addEventListener('click', e => {
-    //     shipBtnClickListener(ship);
-    // });
+    btn.addEventListener('click', e => {
+        shipBtnClickListener(ship);
+    });
     domObj.shipBtnsDiv.appendChild(btn);
 });
 
