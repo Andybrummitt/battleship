@@ -118,7 +118,8 @@
     text-align: center;
     @include flexCenter(column);
     #ship-select-btns {
-        @include flexCenter(column);
+        // @include flexCenter(column);
+        display: block;
     }
     #toggle-ship-direction {
         @extend .ship-select-btn;
