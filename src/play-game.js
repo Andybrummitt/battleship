@@ -37,7 +37,6 @@ const gameTurn = async e => {
     //  GET CLIENT GUESS AND VALIDATE INPUT
     const guess = guessInputField.value.toUpperCase();
     const isValidatedTurn = testRegex(guess);
-    console.log(aiTilesPositionsArr)
     const playerGuessTile = aiTds.filter(tile => tile.firstElementChild.firstElementChild.textContent === guess)[0];
     //  IF INPUT VALIDATED
     if(isValidatedTurn && !AItilesLeft.includes(playerGuessTile)){
