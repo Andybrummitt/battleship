@@ -1,3 +1,5 @@
+alert('testing')
+
 import './styles/main.scss';
 import './create-grid.js';
 import './get-ships.js';
