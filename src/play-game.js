@@ -37,6 +37,7 @@ const gameTurn = async e => {
     //  GET CLIENT GUESS AND VALIDATE INPUT
     const guess = guessInputField.value.toUpperCase();
     const isValidatedTurn = testRegex(guess);
+    console.log(aiTilesPositionsArr)
     const playerGuessTile = aiTds.filter(tile => tile.firstElementChild.firstElementChild.textContent === guess)[0];
     //  IF INPUT VALIDATED
     if(isValidatedTurn && !AItilesLeft.includes(playerGuessTile)){
@@ -46,22 +47,20 @@ const gameTurn = async e => {
         const playerTurnWins = await playerTurn(guess, playerGuessTile, aiTilesPositionsArr);
         //  IF PLAYER WINS - RETURN
         if(playerTurnWins){
-            submitBtn.disabled = false;
-            guessInputField.disabled = false;
             return;
         }
         const AIguessTile = handleAITurn();
-        const AIwins = await AIturn(AIguessTile, userTilesPositionsArr);
+        const AIwins = await AIturn(AIguessTile, userTilesPositionsArr, aiTilesPositionsArr, playerGuesses);
+        //  IF AI WINS - RETURN
+        if(AIwins){
+            return;
+        }
 
         //  AFTER EACH PLAYER HAS TURN
         submitBtn.disabled = false;
         guessInputField.disabled = false;
         playerGuesses.push(playerGuessTile); 
 
-        //  IF AI WINS - RETURN
-        if(AIwins){
-            return;
-        }
 
         //  CHECK AI HITSTREAK AND REMOVE DEAD STREAKS
         let { hitStreakX, hitStreakY } = AIturnsTracker;

@@ -21,7 +21,7 @@ const addTitleStyles = () => {
     setTimeout(() => {
         titleImg.classList.remove('hide');
         title.style.opacity = '1';
-    }, 1000)
+    }, 1200)
 }
 
 Window.onload = addTitleStyles();

@@ -49,6 +49,7 @@ $notification-font: 'Teko', sans-serif;
 @import "./waves-styling";
 
 body {
+    display: block !important;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -142,31 +143,52 @@ button {
     margin-left: auto;
     margin-right: auto;
     position: relative;
-    background: white;
+    background: #FFF720;
     text-align: center;
-    border: 0.5em solid brown;
-    left: -50%;
+    border: 0.5em solid black;
+    border-radius: none;
     z-index: 4;
-    border-radius: 2em;
-        h1 {
-            font-size: 3em;
-            font-family: $notification-font;
-            text-transform: uppercase;
-        }
+    left: -50%;
+    line-height: 3em;
+    h1 {
+        font-size: 4em;
+        font-family: $notification-font;
+        text-transform: uppercase;
     }
+}
 
+#notification-container {
+    position: absolute;
+    left: 50%;
+    width: 35vw;
+    top: 10%;
+}
+
+@media screen and (max-width: 800px){
     #notification-container {
-        position: absolute;
-        left: 50%;
-        width: 25vw;
-        top: 10%;
+        width: 45vw;
     }
+}
 
-    @media screen and (max-width: 800px){
-        #notification-container {
-            width: 45vw;
+@media screen and (max-width: 600px){
+    #notification-container {
+        width: 80%;
+    }
+}
+
+@media screen and (max-height: 550px){
+    #notification-container {
+        font-size: 0.5em;
+    }
+}
+
+@media screen and (min-width: 2000px){
+    #notification-box {
+        h2 {
+            font-size: 3em;
         }
     }
+}
 
 
 

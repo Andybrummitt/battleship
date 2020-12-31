@@ -41,13 +41,14 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader']
+                use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
             }
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html',
+            inject: 'head',
             filename: 'index.html',
             favicon: './src/imgs/favicon.png'
         }),

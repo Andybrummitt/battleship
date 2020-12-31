@@ -136,6 +136,18 @@
     }
 } 
 
+@media screen and (max-width: 900px){
+    #ship-setup-container {
+        font-size: 0.8em;
+    }
+}
+
+@media screen and (max-width: 600px){
+    #ship-setup-container {
+        font-size: 1.1em;
+    }
+}
+
 table {
     border: 1px solid black;
     border-collapse: collapse;
@@ -190,7 +202,14 @@ table {
 
 @media screen and (max-width: 1200px){
     #player-grid {
-        font-size: 1rem;
+            width: 30vw;
+            height: 30vw;
+            font-size: 1rem;
+             td {
+                background: $sea-color;
+                width: calc(30vw/11);
+                height: calc(30vw/11);
+            }
     }
 
     #ai-grid {
@@ -200,11 +219,11 @@ table {
 
 @media screen and (max-width: 900px){
     #ai-grid {
-        height: 35vw;
-        width: 35vw;
+        height: 30vw;
+        width: 30vw;
         td {
-            height: calc(35vw/11);
-            width: calc(35vw/11);
+            height: calc(30vw/11);
+            width: calc(30vw/11);
         }
     }
 }

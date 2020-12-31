@@ -7,6 +7,7 @@ import { sinkShip, lineThroughAIshipsLeft, clearHitStreakArr, addHitInfoToTracke
 
 const playerTurn = async (guess, playerGuessTile, aiTilesPositionsArr) => {
     //  IF HIT
+    console.log(aiTilesPositionsArr)
         let isVictory = false;
         if(isHit(guess)(aiTilesPositionsArr)){
             //  STYLE HIT TILE AND REMOVE FROM TILES ARR
@@ -39,8 +40,9 @@ const playerTurn = async (guess, playerGuessTile, aiTilesPositionsArr) => {
         return false;
 }
 
-const AIturn = async (AIguessTile, userTilesPositionsArr) => {
+const AIturn = async (AIguessTile, userTilesPositionsArr, aiTilesPositionsArr, playerGuesses) => {
     let isVictory = false;
+    console.log(userTilesPositionsArr)
     await unanimatedNotification(`AI turn`)('');
     const AIguessTileGridPosition = AIguessTile.firstElementChild.firstElementChild.textContent;
     //  IF AI HIT
